@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "220px-Chris_Hemsworth_by_Gage_Skidmore@2x.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}
