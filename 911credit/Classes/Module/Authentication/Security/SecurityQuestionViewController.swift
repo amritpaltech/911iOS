@@ -79,6 +79,7 @@ extension SecurityQuestionViewController: SecurityOptionDelegate {
 extension SecurityQuestionViewController {
     
     func getUserInfo() {
+        
         if let value = UserDefaults.standard.value(forKey: "unauthorized") as? Bool,value{
             AppDelegate.shared?.setupTabbar()
             return

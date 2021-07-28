@@ -48,16 +48,20 @@ extension ChangePasswordViewController {
 extension ChangePasswordViewController {
     func changePassword() {
         if let firstName = newPasswordTextField.text, firstName.isEmpty {
-            Utils.showAlertMessage(message: "Please enter first name")
+            Utils.showAlertMessage(message: "Please enter password.")
         } else if let lastName = confirmPasswordTextField.text, lastName.isEmpty {
-            Utils.showAlertMessage(message: "Please enter last name")
-        } else {
+            Utils.showAlertMessage(message: "Please enter confirm password.")
+        } else if let firstName = newPasswordTextField.text,let lastName = confirmPasswordTextField.text, firstName != lastName {
+            Utils.showAlertMessage(message: "The new and confirm passwords do not match!")
+        }else {
             Utils.showSpinner()
             let param = ["new_password": newPasswordTextField.text, "new_confirm_password": confirmPasswordTextField.text]
-            APIServices.changePassword(param: param as [String: Any]) { (message) in
+            APIServices.changePassword(param: param as [String: Any]) { (message,success) in
                 Utils.hideSpinner()
                 Utils.showAlertAction(message: message, buttons: ["Ok"]) { action in
-                    self.navigationController?.popViewController(animated: true)
+                    if success {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         }

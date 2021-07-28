@@ -116,15 +116,25 @@ class APIServices: NSObject {
         }
     }
     
-    class func changePassword(param: [String: Any], complition: @escaping((_ message: String) -> Void)) {
+    class func changePassword(param: [String: Any], complition: @escaping((_ message: String,_ success : Bool) -> Void)) {
         NetworkManager.shared.requestPost(path: API.changepassword.rawValue, params: param, contentType: .formUrlencoded) { response, error, _ in
             if error == nil {
                 if let result = response as? [String: Any] {
                     if result["status"] as? String == "success" {
-                        complition(result["message"] as? String ?? "")
+                        complition(result["message"] as? String ?? "", true)
                     } else {
                         Utils.hideSpinner()
-                        Utils.showAlertMessage(message: result["message"] as? String ?? "")
+                        var message = ""
+                        if let messageDict = result["message"] as? NSDictionary{
+                            for value in messageDict.allKeys{
+                                if let array = messageDict[value] as? [String] {
+                                    message = array.map({String($0)}).joined(separator: ",")
+                                }
+                            }
+                            complition(message, false)
+                        } else {
+                            message = result["message"] as? String ?? ""
+                        }
                     }
                 }
             } else {

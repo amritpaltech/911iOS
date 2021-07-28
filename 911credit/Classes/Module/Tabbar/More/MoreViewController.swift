@@ -6,18 +6,22 @@
 //
 
 import UIKit
-
+import Kingfisher
 class MoreViewController: BaseViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
+    @IBOutlet weak var emailLbl: UILabel!
+    @IBOutlet weak var phoneNumberLbl: UILabel!
+    @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var rectangleView: UIView!
     @IBOutlet weak var moreTableview: UITableView!
     @IBOutlet weak var profileImageView: UIImageView!
     
     var imageStringData = ""
-
+    var userInfo : Userinfo?
     var moreMenuItem = ["My Profile", "Documents", "Change Password", "Chat", "Notifications", "Case Management", "Log out"]
     var moreIconList = ["user", "user", "changePassword", "chat", "chat", "caseManagement", "logout"]
-    
+    var photoManager: PhotoManager!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -26,6 +30,7 @@ class MoreViewController: BaseViewController, UIImagePickerControllerDelegate & 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        setUpUserInfo()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -40,7 +45,19 @@ extension MoreViewController {
         self.moreTableview.delegate = self
         self.moreTableview.dataSource = self
         self.moreTableview.register(UINib(nibName: "MoreViewTableViewCell", bundle: nil), forCellReuseIdentifier: "MoreViewTableViewCell")
-        //        updateAvatar()
+        emailLbl.numberOfLines = 2
+        getUserInfo()
+    }
+    
+    func setUpUserInfo(){
+        if let info = self.userInfo{
+            emailLbl.text = info.email
+            phoneNumberLbl.text = info.phoneNumber
+            nameLbl.text = (info.firstName ?? "") + " " + (info.lastName ?? "")
+            if let url = URL(string: info.userAvatar ?? "") {
+                profileImageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "user"), options: nil, completionHandler: nil)
+            }
+        }
     }
 }
 
@@ -48,24 +65,36 @@ extension MoreViewController {
 extension MoreViewController {
     
     @IBAction func addPhotoButtonAction(_ sender: Any) {
+        if let navVC = self.navigationController {
+            photoManager = PhotoManager.init(navigationController: navVC, allowEditing: true) { (image) in
+                if let value = image {
+                    //                    self.coverImgVw.image = value
+                    self.profileImageView.image = value
+                    self.imageStringData = self.convertImageToBase64(image: value)
+                    self.updateAvatar()
+                    
+                }
+            }
+        }
+
         
-        let alert = UIAlertController(title: "Choose Option", message: "Please Select an Option", preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Take photo", style: .default, handler: { [self] (_ UIAlertAction)in
-            self.checkCameraPermission()
-            
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Choose From Gallery", style: .default, handler: { (_ UIAlertAction)in
-            self.photoLibraryPermissionCheck()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (_ UIAlertAction)in
-            print("User click Dismiss button")
-        }))
-        self.present(alert, animated: true, completion: {
-            print("completion block")
-        })
+//        let alert = UIAlertController(title: "Choose Option", message: "Please Select an Option", preferredStyle: .actionSheet)
+//
+//        alert.addAction(UIAlertAction(title: "Take photo", style: .default, handler: { [self] (_ UIAlertAction)in
+//            self.checkCameraPermission()
+//
+//        }))
+//
+//        alert.addAction(UIAlertAction(title: "Choose From Gallery", style: .default, handler: { (_ UIAlertAction)in
+//            self.photoLibraryPermissionCheck()
+//        }))
+//
+//        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (_ UIAlertAction)in
+//            print("User click Dismiss button")
+//        }))
+//        self.present(alert, animated: true, completion: {
+//            print("completion block")
+//        })
     }
 }
 
@@ -143,6 +172,7 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
             let storyboard = UIStoryboard(name: "MoreOption", bundle: nil)
             guard let vc = storyboard.instantiateViewController(
                     withIdentifier: "MyProfileViewController") as? MyProfileViewController else { return }
+            vc.userInfo = userInfo
             navigationController?.pushViewController(vc, animated: false)
         case 1:
             let storyboard = UIStoryboard(name: "MoreOption", bundle: nil)
@@ -191,4 +221,12 @@ extension MoreViewController {
             Utils.showAlertMessage(message: message)
         }
     }
+    
+    func getUserInfo() {
+        APIServices.getUserInfo {(list, code) in
+            self.userInfo = list?.userinfo
+            self.setUpUserInfo()
+        }
+    }
+
 }

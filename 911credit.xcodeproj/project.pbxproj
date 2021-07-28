@@ -77,6 +77,12 @@
 		C037C0482689B72A005F6EF2 /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037C0472689B72A005F6EF2 /* TableViewExtension.swift */; };
 		C037C04B2689B753005F6EF2 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037C04A2689B753005F6EF2 /* StringExtension.swift */; };
 		C8776799D7D4B042ED92D159 /* Pods_911credit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD5FC8EA2A8B84AC589AA9F /* Pods_911credit.framework */; };
+		F526C63626B185EC003CAD7A /* Userinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63426B185EC003CAD7A /* Userinfo.swift */; };
+		F526C63726B185EC003CAD7A /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63526B185EC003CAD7A /* Roles.swift */; };
+		F526C63B26B185FD003CAD7A /* Credit_report.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63826B185FD003CAD7A /* Credit_report.swift */; };
+		F526C63C26B185FD003CAD7A /* Credit_report_history.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63926B185FD003CAD7A /* Credit_report_history.swift */; };
+		F526C63D26B185FD003CAD7A /* Pivot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63A26B185FD003CAD7A /* Pivot.swift */; };
+		F526C63F26B18EE2003CAD7A /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63E26B18EE1003CAD7A /* PhotoManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +162,12 @@
 		C037C0472689B72A005F6EF2 /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
 		C037C04A2689B753005F6EF2 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		DBD5FC8EA2A8B84AC589AA9F /* Pods_911credit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_911credit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F526C63426B185EC003CAD7A /* Userinfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Userinfo.swift; sourceTree = "<group>"; };
+		F526C63526B185EC003CAD7A /* Roles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roles.swift; sourceTree = "<group>"; };
+		F526C63826B185FD003CAD7A /* Credit_report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credit_report.swift; sourceTree = "<group>"; };
+		F526C63926B185FD003CAD7A /* Credit_report_history.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credit_report_history.swift; sourceTree = "<group>"; };
+		F526C63A26B185FD003CAD7A /* Pivot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pivot.swift; sourceTree = "<group>"; };
+		F526C63E26B18EE1003CAD7A /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +347,7 @@
 		048E1F912696FE4F00119C10 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F526C63326B185D3003CAD7A /* UserInfo */,
 				048E1F932696FE6F00119C10 /* User.swift */,
 				040F1ED42699A7A1006C6E09 /* Message.swift */,
 				044BA2F726AA9DAF004DD1FA /* Security.swift */,
@@ -590,6 +603,7 @@
 		C037C02C2689B5AA005F6EF2 /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
+				F526C63E26B18EE1003CAD7A /* PhotoManager.swift */,
 				C037C02D2689B5CA005F6EF2 /* Constant.swift */,
 				C037C0302689B5DB005F6EF2 /* Utils.swift */,
 				048E1F952696FF9300119C10 /* Utils+Credit.swift */,
@@ -612,6 +626,18 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		F526C63326B185D3003CAD7A /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				F526C63926B185FD003CAD7A /* Credit_report_history.swift */,
+				F526C63826B185FD003CAD7A /* Credit_report.swift */,
+				F526C63A26B185FD003CAD7A /* Pivot.swift */,
+				F526C63526B185EC003CAD7A /* Roles.swift */,
+				F526C63426B185EC003CAD7A /* Userinfo.swift */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -631,6 +657,8 @@
 			dependencies = (
 			);
 			name = 911credit;
+			packageProductDependencies = (
+			);
 			productName = 911credit;
 			productReference = C037C00B2689B434005F6EF2 /* 911credit.app */;
 			productType = "com.apple.product-type.application";
@@ -658,6 +686,8 @@
 				Base,
 			);
 			mainGroup = C037C0022689B434005F6EF2;
+			packageReferences = (
+			);
 			productRefGroup = C037C00C2689B434005F6EF2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -766,6 +796,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				042E9F81268B522600066EE1 /* UIView+Extension.swift in Sources */,
+				F526C63C26B185FD003CAD7A /* Credit_report_history.swift in Sources */,
 				040F1EC62699A256006C6E09 /* ChatDetailsViewController.swift in Sources */,
 				042E9F86268B57E000066EE1 /* ViewerCell.swift in Sources */,
 				0459939E26A95D980089CA3E /* OptionQuestionTableCell.swift in Sources */,
@@ -774,11 +805,14 @@
 				048E1F942696FE6F00119C10 /* User.swift in Sources */,
 				04EF7090268DE8F3007F870B /* SecureCodeTextField.swift in Sources */,
 				04AFBFAB26A955EA00245895 /* SecurityOptionCell.swift in Sources */,
+				F526C63F26B18EE2003CAD7A /* PhotoManager.swift in Sources */,
 				04E906DB2692ED1F00CFADAE /* NotificationsCell.swift in Sources */,
 				048DE23726902DFF005D8A6A /* CaseManagementCell.swift in Sources */,
+				F526C63726B185EC003CAD7A /* Roles.swift in Sources */,
 				C037C0422689B6F9005F6EF2 /* AlertViewControllerExtension.swift in Sources */,
 				C037C0452689B715005F6EF2 /* FontExtension.swift in Sources */,
 				044BA2F826AA9DAF004DD1FA /* Security.swift in Sources */,
+				F526C63626B185EC003CAD7A /* Userinfo.swift in Sources */,
 				04EF7083268D91DB007F870B /* MoreViewController.swift in Sources */,
 				04734DF4269D70660056AF4D /* UIViewControllerExtension.swift in Sources */,
 				044731172690468100C1C3D4 /* CaseManagementDetailsViewController.swift in Sources */,
@@ -795,6 +829,7 @@
 				04EF7088268DC073007F870B /* VerificationCodeViewController.swift in Sources */,
 				04E906D52692EC9F00CFADAE /* NotificationsViewController.swift in Sources */,
 				0447311D2690562D00C1C3D4 /* ChatCell.swift in Sources */,
+				F526C63B26B185FD003CAD7A /* Credit_report.swift in Sources */,
 				04228FBB2692CE17006F3423 /* ChangePasswordViewController.swift in Sources */,
 				C037C00F2689B434005F6EF2 /* AppDelegate.swift in Sources */,
 				040F1ED52699A7A1006C6E09 /* Message.swift in Sources */,
@@ -811,6 +846,7 @@
 				042E9F7E268B4C5C00066EE1 /* LoginViewController.swift in Sources */,
 				C037C0312689B5DB005F6EF2 /* Utils.swift in Sources */,
 				040F1ED22699A5AD006C6E09 /* RightViewCell.swift in Sources */,
+				F526C63D26B185FD003CAD7A /* Pivot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -961,14 +997,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_TEAM = 4LWXH6QV7Y;
+				DEVELOPMENT_TEAM = 4RX3ES2DZ5;
 				INFOPLIST_FILE = 911credit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.softnoesis.911credit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softnoesis.911creditTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -985,14 +1021,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_TEAM = 4LWXH6QV7Y;
+				DEVELOPMENT_TEAM = 4RX3ES2DZ5;
 				INFOPLIST_FILE = 911credit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.softnoesis.911credit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softnoesis.911creditTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

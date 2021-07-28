@@ -18,7 +18,8 @@ class MyProfileViewController: UIViewController {
     @IBOutlet weak var zipTextField: UITextField!
     @IBOutlet weak var addressOneTextField: UITextField!
     @IBOutlet weak var addressTwoTextField: UITextField!
-    
+    var userInfo : Userinfo?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setLeftAlignedNavigationItemTitle(text: "My Profile")
@@ -39,6 +40,17 @@ class MyProfileViewController: UIViewController {
 // MARK: - Methods
 extension MyProfileViewController {
     func setupUI() {
+        if let info = self.userInfo{
+            firstNameTextField.text = info.firstName
+            lastNameTextField.text = info.lastName
+            emailTextField.text = info.email
+            phoneNumberTextField.text = info.phoneNumber
+            cityTextField.text = ""
+            stateTextField.text = ""
+            zipTextField.text = ""
+            addressOneTextField.text = ""
+            addressTwoTextField.text = ""
+        }
     }
 }
 
@@ -64,6 +76,9 @@ extension MyProfileViewController {
             let param = ["first_name": firstNameTextField.text, "last_name": lastNameTextField.text, "phone_number": phoneNumberTextField.text]
             APIServices.updateProfile(param: param as [String: Any]) { (message) in
                 Utils.hideSpinner()
+                self.userInfo?.firstName = self.firstNameTextField.text ?? ""
+                self.userInfo?.lastName = self.lastNameTextField.text ?? ""
+                self.userInfo?.phoneNumber = self.phoneNumberTextField.text ?? ""
                 Utils.showAlertAction(message: message, buttons: ["Ok"]) { action in
                     self.navigationController?.popViewController(animated: true)
                 }
