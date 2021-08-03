@@ -77,6 +77,7 @@
 		C037C0482689B72A005F6EF2 /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037C0472689B72A005F6EF2 /* TableViewExtension.swift */; };
 		C037C04B2689B753005F6EF2 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037C04A2689B753005F6EF2 /* StringExtension.swift */; };
 		C8776799D7D4B042ED92D159 /* Pods_911credit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD5FC8EA2A8B84AC589AA9F /* Pods_911credit.framework */; };
+		F512D31826B92C5000740A67 /* MonochromeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512D31726B92C4F00740A67 /* MonochromeView.swift */; };
 		F526C63626B185EC003CAD7A /* Userinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63426B185EC003CAD7A /* Userinfo.swift */; };
 		F526C63726B185EC003CAD7A /* Roles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63526B185EC003CAD7A /* Roles.swift */; };
 		F526C63B26B185FD003CAD7A /* Credit_report.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63826B185FD003CAD7A /* Credit_report.swift */; };
@@ -162,6 +163,7 @@
 		C037C0472689B72A005F6EF2 /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
 		C037C04A2689B753005F6EF2 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		DBD5FC8EA2A8B84AC589AA9F /* Pods_911credit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_911credit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F512D31726B92C4F00740A67 /* MonochromeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonochromeView.swift; sourceTree = "<group>"; };
 		F526C63426B185EC003CAD7A /* Userinfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Userinfo.swift; sourceTree = "<group>"; };
 		F526C63526B185EC003CAD7A /* Roles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Roles.swift; sourceTree = "<group>"; };
 		F526C63826B185FD003CAD7A /* Credit_report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credit_report.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 		049529C62699C1F900221095 /* ExternalLibraries */ = {
 			isa = PBXGroup;
 			children = (
+				F512D31726B92C4F00740A67 /* MonochromeView.swift */,
 				049529C72699C20500221095 /* roundedCornerView.swift */,
 			);
 			path = ExternalLibraries;
@@ -833,6 +836,7 @@
 				04228FBB2692CE17006F3423 /* ChangePasswordViewController.swift in Sources */,
 				C037C00F2689B434005F6EF2 /* AppDelegate.swift in Sources */,
 				040F1ED52699A7A1006C6E09 /* Message.swift in Sources */,
+				F512D31826B92C5000740A67 /* MonochromeView.swift in Sources */,
 				04EF707F268D91A1007F870B /* ChatViewController.swift in Sources */,
 				049529C82699C20500221095 /* roundedCornerView.swift in Sources */,
 				040F1ECE2699A593006C6E09 /* LeftViewCell.swift in Sources */,
@@ -996,7 +1000,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 4RX3ES2DZ5;
 				INFOPLIST_FILE = 911credit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -1020,7 +1024,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 4RX3ES2DZ5;
 				INFOPLIST_FILE = 911credit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

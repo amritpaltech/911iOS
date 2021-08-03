@@ -14,4 +14,6 @@ target '911credit' do
   pod 'IQKeyboardManagerSwift'
   pod 'Kingfisher'
   pod 'Charts'
+  pod 'MSCircularSlider'
+
 end

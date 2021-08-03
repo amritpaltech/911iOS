@@ -81,6 +81,7 @@ class NetworkManager: NSObject {
         if let token = Utils.getUserInfo()?.apiToken {
             dict["Authorization"] = "Bearer \(token)"
         }
+        //        dict["Authorization"] = "Bearer n168VBfVAt0XXsT6jqePsItoiFEDLbObxF9g1j5yQj8AgquDyGy5sSE4ewvGT"
         return dict
     }
     

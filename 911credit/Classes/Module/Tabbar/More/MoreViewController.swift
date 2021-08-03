@@ -69,10 +69,12 @@ extension MoreViewController {
             photoManager = PhotoManager.init(navigationController: navVC, allowEditing: true) { (image) in
                 if let value = image {
                     //                    self.coverImgVw.image = value
-                    self.profileImageView.image = value
                     self.imageStringData = self.convertImageToBase64(image: value)
                     self.updateAvatar()
-                    
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                        self.profileImageView.image = value
+
+                    }
                 }
             }
         }
@@ -219,11 +221,15 @@ extension MoreViewController {
         APIServices.updateAvatar(param: param as [String : Any]) { (message) in
             Utils.hideSpinner()
             Utils.showAlertMessage(message: message)
+            self.getUserInfo()
         }
     }
     
     func getUserInfo() {
+        Utils.showSpinner()
+
         APIServices.getUserInfo {(list, code) in
+            Utils.hideSpinner()
             self.userInfo = list?.userinfo
             self.setUpUserInfo()
         }
