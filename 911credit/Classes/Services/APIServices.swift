@@ -217,5 +217,82 @@ class APIServices: NSObject {
             }
         }
     }
+    
+    
+    class func getCaseList(complition: @escaping((_ list: [Cases]?) -> Void)) {
+        NetworkManager.shared.requestGet(path: API.cases.rawValue, params: (Any).self) { response, error, _ in
+            if error == nil {
+                if let result = response as? [String: Any] {
+                    if  result["status"] as? String == "success" {
+                        if let data = result["cases"] {
+                            let list : [Cases]? = self.decodeObject(fromData: data)
+                            complition(list)
+                        }
+                    } else {
+                        Utils.hideSpinner()
+                        Utils.showAlertMessage(message: result["message"] as? String ?? "")
+                    }
+                }
+            } else {
+                Utils.hideSpinner()
+                Utils.showAlertMessage(message: error?.localizedDescription ?? "")
+            }
+        }
+    }
 
+    class func getDocList(complition: @escaping((_ list: Documents?) -> Void)) {
+        NetworkManager.shared.requestGet(path: API.docList.rawValue, params: (Any).self) { response, error, _ in
+            if error == nil {
+                if let result = response as? [String: Any] {
+                    if  result["status"] as? String == "success" {
+                        if let data = result["documents"] {
+                            let doc : Documents? = self.decodeObject(fromData: data)
+                            complition(doc)
+                        }
+                    } else {
+                        Utils.hideSpinner()
+                        Utils.showAlertMessage(message: result["message"] as? String ?? "")
+                    }
+                }
+            } else {
+                Utils.hideSpinner()
+                Utils.showAlertMessage(message: error?.localizedDescription ?? "")
+            }
+        }
+    }
+    
+    class func uploadDocument(param: [String: AnyObject],fileUrl:NSURL,complition: @escaping((_ list: Documents?) -> Void)) {
+        NetworkManager.shared.callApiByMultiPart(urlStr:API.baseURL.rawValue + API.uploadDocument.rawValue,params:param, fileURLs: [fileUrl], { (response, statusCode) in
+            DispatchQueue.main.async {
+                Utils.hideSpinner()
+                if let dict = convertIntoDictionary(responseData: response) {
+                    if  dict["status"] as? String == "success" {
+                        if let data = dict["documents"] {
+                            let doc : Documents? = self.decodeObject(fromData: data)
+                            complition(doc)
+                        }
+                    } else {
+                        Utils.hideSpinner()
+                        Utils.showAlertMessage(message: dict["message"] as? String ?? "")
+                    }
+                }
+            }
+        }){(error, statusCode) in
+            DispatchQueue.main.async {
+                Utils.hideSpinner()
+                Utils.showAlertMessage(message: error?.localizedDescription ?? "")
+            }
+        }
+    }
+    
+   class func convertIntoDictionary(responseData: Data?) -> [String:AnyObject]? {
+        if responseData != nil {
+            do {
+                return try JSONSerialization.jsonObject(with: responseData!, options: .allowFragments) as? [String:AnyObject]
+            }catch{
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
 }

@@ -12,16 +12,16 @@ class VerificationCodeViewController: UIViewController {
     @IBOutlet weak var mobileNumberLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     
-    @IBOutlet weak var oneOTPTextFeild: SecureCodeTextField!
-    @IBOutlet weak var twoOTPTextFeild: SecureCodeTextField!
-    @IBOutlet weak var threeOTPTextFeild: SecureCodeTextField!
-    @IBOutlet weak var fourOTPTextFeild: SecureCodeTextField!
-    @IBOutlet weak var fiveOTPTextFeild: SecureCodeTextField!
-    @IBOutlet weak var sixOTPTextFeild: SecureCodeTextField!
+    @IBOutlet weak var oneOTPTextFeild: UITextField!
+    @IBOutlet weak var twoOTPTextFeild: UITextField!
+    @IBOutlet weak var threeOTPTextFeild: UITextField!
+    @IBOutlet weak var fourOTPTextFeild: UITextField!
+    @IBOutlet weak var fiveOTPTextFeild: UITextField!
+    @IBOutlet weak var sixOTPTextFeild: UITextField!
     @IBOutlet weak var resendOTPButton: UIButton!
     
-    var textFields: [SecureCodeTextField] = []
-    
+    var textFields: [UITextField] = []
+//    SecureCodeTextField
     override func viewDidLoad() {
         super.viewDidLoad()
         setLeftAlignedNavigationItemTitle(text: "Login")
@@ -44,20 +44,22 @@ class VerificationCodeViewController: UIViewController {
         textFields.forEach { (textfield) in
             textfield.tintColor = .white
             textfield.keyboardType = .numberPad
+            textfield.delegate = self
+            textfield.addBottomBorder(value: -2, color: UIColor.darkGray)
         }
-        let minIndex = 0
-        let maxIndex = textFields.count - 1
-        
-        for index in minIndex...maxIndex {
-            if index != minIndex {
-                textFields[index].previousTextField = textFields[index - 1]
-            }
-            if index != maxIndex {
-                textFields[index].nextTextField = textFields[index + 1]
-            }
-            textFields[index].textFieldDidEndEditingCompletion = textFieldDidEndEditingCompletion(_:)
-            textFields[index].moveToNextFromCurrentTextFieldCompletion = moveToNextFromCurrentTextFieldCompletion(_:)
-        }
+//        let minIndex = 0
+//        let maxIndex = textFields.count - 1
+//
+//        for index in minIndex...maxIndex {
+//            if index != minIndex {
+//                textFields[index].previousTextField = textFields[index - 1]
+//            }
+//            if index != maxIndex {
+//                textFields[index].nextTextField = textFields[index + 1]
+//            }
+//            textFields[index].textFieldDidEndEditingCompletion = textFieldDidEndEditingCompletion(_:)
+//            textFields[index].moveToNextFromCurrentTextFieldCompletion = moveToNextFromCurrentTextFieldCompletion(_:)
+//        }
     }
 }
 
@@ -157,3 +159,46 @@ extension VerificationCodeViewController {
         }
     }
 }
+extension VerificationCodeViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if ((textField.text?.count)! < 1  && string.count > 0) || (textField.text?.count == 1 && string.count > 0) {
+            let nextTag = textField.tag + 1
+            
+            // get next responder
+            let nextResponder = textField.superview?.viewWithTag(nextTag)
+            textField.text = string
+            
+            if (nextResponder == nil) {
+                textField.resignFirstResponder()
+            }
+            nextResponder?.becomeFirstResponder()
+            return false
+        }
+        else if ((textField.text?.count)! >= 1  && string.count == 0) {
+            // on deleting value from Textfield
+            let previousTag = textField.tag - 1;
+            
+            // get previous responder
+            var previousResponder = textField.superview?.viewWithTag(previousTag)
+            
+            if (previousResponder == nil) {
+                previousResponder = textField.superview?.viewWithTag(1)
+            }
+            textField.text = ""
+            previousResponder?.becomeFirstResponder()
+            return false
+        }
+        return true
+    }
+}
+
+extension UITextField {
+    func addBottomBorder(value:CGFloat = 1,color:UIColor = .black){
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0, y: self.frame.size.height + value, width: self.frame.size.width, height: 1)
+        bottomLine.backgroundColor = color.cgColor
+        borderStyle = .none
+        layer.addSublayer(bottomLine)
+    }
+}
+

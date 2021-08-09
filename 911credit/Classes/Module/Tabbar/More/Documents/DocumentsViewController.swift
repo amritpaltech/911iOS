@@ -6,31 +6,41 @@
 //
 
 import UIKit
-
-enum Compass {
-    case drivingLicenceFront
-    case drivingLicenceBack
-    case socialSecurityNumber
-    case residenceProof
-    case otherDocument1
-    case otherDocument2
+import WeScan
+import MobileCoreServices
+enum DocumentSection:Int, CaseIterable {
+    case requiredDocument, otherDocument
+    func getTitle()->String {
+        switch self {
+        case .requiredDocument:
+            return "Required Document"
+        case .otherDocument:
+            return "Other Document"
+        }
+    }
 }
-
 class DocumentsViewController: UIViewController, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate {
+    var document:Documents?
+    let types: [String] = [
+        kUTTypeJPEG as String,
+        kUTTypePNG as String,
+        "com.microsoft.word.doc",
+        "org.openxmlformats.wordprocessingml.document",
+        kUTTypeRTF as String,
+        "com.microsoft.powerpoint.​ppt",
+        "org.openxmlformats.presentationml.presentation",
+        kUTTypePlainText as String,
+        "com.microsoft.excel.xls",
+        "org.openxmlformats.spreadsheetml.sheet",
+        kUTTypePDF as String,
+    ]
+
     
-    @IBOutlet weak var tasksCompletedLabel: UILabel!
-    
-    @IBOutlet weak var drivingLicenceFrontView: UIView!
-    @IBOutlet weak var drivingLicenceBackView: UIView!
-    @IBOutlet weak var socialSecurityNumberView: UIView!
-    @IBOutlet weak var residenceProofView: UIView!
-    @IBOutlet weak var otherDocument1View: UIView!
-    @IBOutlet weak var otherDocument2View: UIView!
-    
+    @IBOutlet weak var tableView: UITableView!
+    var selectedDoc : Document?
     override func viewDidLoad() {
         super.viewDidLoad()
         setLeftAlignedNavigationItemTitle(text: "Documents")
-        setupTapGesture()
         setupUI()
     }
     
@@ -44,73 +54,174 @@ class DocumentsViewController: UIViewController, UIActionSheetDelegate, UIImageP
         self.tabBarController?.tabBar.isHidden = false
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//    }
-//
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        self.navigationController?.setNavigationBarHidden(true, animated: false)
-//    }
 }
 
 // MARK: - Methods
 extension DocumentsViewController {
     func setupUI() {
-//        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        getDoc()
     }
+    
+    func getDoc() {
+        Utils.showSpinner()
+        APIServices.getDocList{doc in
+            Utils.hideSpinner()
+            //load dashboard data
+            self.document = doc
+            self.tableView.reloadData()
+        }
+    }
+
+    
+    func uploadDoc(url:URL) {
+        Utils.showSpinner()
+        guard let obj = self.selectedDoc else {
+            return
+        }
+        let params = [
+            "document__id": obj.docId ?? 0,
+            "title": obj.label ?? "",
+            "doc_type": obj.documentType ?? "",
+            "case_id": obj.caseId ?? 0,
+            "fk_documentrequest_id": 0,
+            "notes": ""
+        ] as [String : AnyObject]
+        APIServices.uploadDocument(param: params,fileUrl: url as NSURL, complition: {response in
+            Utils.hideSpinner()
+            self.document = response
+            self.tableView.reloadData()
+            self.getDoc()
+        })
+    }
+
 }
 
-// MARK: - Methods
-extension DocumentsViewController {
-    
-    func setupTapGesture() {
-        
-        let gestureOne = UITapGestureRecognizer(target: self, action: #selector(self.drivingLicenceFrontAction))
-        drivingLicenceFrontView.addGestureRecognizer(gestureOne)
-        
-        let gestureTwo = UITapGestureRecognizer(target: self, action: #selector(self.drivingLicenceBackAction))
-        drivingLicenceBackView.addGestureRecognizer(gestureTwo)
-        
-        let gestureThree = UITapGestureRecognizer(target: self, action: #selector(self.socialSecurityNumberAction))
-        socialSecurityNumberView.addGestureRecognizer(gestureThree)
-        
-        let gestureFour = UITapGestureRecognizer(target: self, action: #selector(self.residenceProofAction))
-        residenceProofView.addGestureRecognizer(gestureFour)
-        
-        let gestureFive = UITapGestureRecognizer(target: self, action: #selector(self.otherDocument1Action))
-        otherDocument1View.addGestureRecognizer(gestureFive)
-        
-        let gestureSix = UITapGestureRecognizer(target: self, action: #selector(self.otherDocument2Action))
-        otherDocument2View.addGestureRecognizer(gestureSix)
+extension DocumentsViewController:UITableViewDelegate,UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return DocumentSection.allCases.count
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let docSection = DocumentSection(rawValue: section){
+            switch docSection {
+            case .requiredDocument:
+                return document?.required?.count ?? 0
+            case .otherDocument:
+                return document?.other?.count ?? 0
+            }
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DocumentSectionCell") as? DocumentSectionCell
+        cell?.titleLbl.text = DocumentSection(rawValue: section)?.getTitle()
+        cell?.backgroundColor = .white
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let docSection = DocumentSection(rawValue: indexPath.section) {
+            switch docSection {
+            case .requiredDocument:
+                return requiredDocTableView(tableView, cellForRowAt: indexPath)
+            case .otherDocument:
+                return otherDocTableView(tableView, cellForRowAt: indexPath)
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    func requiredDocTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DocumentCell") as? DocumentCell else {
+            return UITableViewCell()
+        }
+        if let obj = self.document?.required?[indexPath.row] {
+            cell.initCellForRequired(obj)
+        }
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func otherDocTableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DocumentCell") as? DocumentCell else {
+            return UITableViewCell()
+        }
+        if let obj = self.document?.other?[indexPath.row] {
+            cell.initCellForOther(obj)
+        }
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 55
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let docSection = DocumentSection(rawValue: indexPath.section) {
+            switch docSection {
+            case .requiredDocument:
+                if let obj = self.document?.required?[indexPath.row] {
+                    showPickerAndAlertByStatus(obj.status ?? "",obj)
+                }
+            case .otherDocument:
+                if let obj = self.document?.other?[indexPath.row] {
+                    showPickerAndAlertByStatus(obj.status ?? "",obj)
+                }
+            }
+        }
+    }
+    
+    func showPickerAndAlertByStatus(_ status:String,_ doc:Document){
+        if status == "missing" {
+            self.selectedDoc = doc
+            self.documentPicker()
+        } else if status == "pending" {
+            Utils.showAlertMessage(message: "Please wait until we verify your document")
+        } else if status == "approved" {
+            Utils.showAlertMessage(message: "Your document is verified")
+        } else if status == "rejected" {
+            Utils.showAlertMessage(message: "Document you provided is rejected")
+        }
+    }
+    
 }
 
 // MARK: - Actions
 extension DocumentsViewController {
     
-    @objc func drivingLicenceFrontAction(sender: UITapGestureRecognizer) {
+    func scanImage() {
+        let scannerViewController = ImageScannerController(delegate: self)
+        scannerViewController.modalPresentationStyle = .fullScreen
+        if #available(iOS 13.0, *) {
+            scannerViewController.navigationBar.tintColor = .label
+        } else {
+            scannerViewController.navigationBar.tintColor = .black
+        }
+        present(scannerViewController, animated: true)
+    }
+
+    
+    
+    func documentPicker() {
         
         let alert = UIAlertController(title: "Choose Option", message: "Please Select an Option", preferredStyle: .actionSheet)
                 
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Camera button")
-            
-            // MARK: - Take_image
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .camera
-                imagePicker.allowsEditing = false
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-            
+            self.scanImage()
         }))
         
         alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (_ UIAlertAction)in
             print("User click Gallery button")
-            
-            // MARK: - Take_Gallery
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 let imagePicker = UIImagePickerController()
                 imagePicker.delegate = self
@@ -119,11 +230,10 @@ extension DocumentsViewController {
                 self.present(imagePicker, animated: true, completion: nil)
             }
         }))
-        
+
         alert.addAction(UIAlertAction(title: "Documents", style: .default, handler: { (_ UIAlertAction)in
             print("User click Documents button")
-            
-            let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.pdf"], in: .import)
+            let documentPicker = UIDocumentPickerViewController(documentTypes: self.types, in: .import)
             documentPicker.delegate = self
             self.present(documentPicker, animated: true, completion: nil)
         }))
@@ -138,254 +248,39 @@ extension DocumentsViewController {
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let _ = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as? UIImage
-        
         dismiss(animated: true, completion: nil)
+        guard let image = info[.originalImage] as? UIImage else { return }
+        let scannerViewController = ImageScannerController(image: image, delegate: self)
+        present(scannerViewController, animated: true)
+
     }
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         if controller.documentPickerMode == UIDocumentPickerMode.import {
             //            // Get Url Path
+            if let url = urls.first{
+                self.uploadDoc(url: url)
+            }
+        }
+    }
+        
+}
+extension DocumentsViewController: ImageScannerControllerDelegate {
+    func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
+        assertionFailure("Error occurred: \(error)")
+    }
+    
+    func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
+        scanner.dismiss(animated: true, completion: nil)
+        let imgData : NSData = results.croppedScan.image.jpegData(compressionQuality: 0.5)! as NSData
+
+        if let url = FileDownloader.saveFile(with: "\(selectedDoc?.docId ?? 0).jpeg", fileData: imgData as Data),let nsURL = NSURL(string: url.absoluteString){
+            self.uploadDoc(url: url)
         }
     }
     
-    @objc func drivingLicenceBackAction(sender: UITapGestureRecognizer) {
-        
-        let alert = UIAlertController(title: "Choose Option", message: "Please Select an Option", preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Camera button")
-            
-            // MARK: - Take_image
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .camera
-                imagePicker.allowsEditing = false
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-            
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Gallery button")
-            
-            // MARK: - Take_Gallery
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .photoLibrary
-                imagePicker.allowsEditing = true
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Documents", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Documents button")
-            
-            let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.pdf"], in: .import)
-            documentPicker.delegate = self
-            self.present(documentPicker, animated: true, completion: nil)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (_ UIAlertAction)in
-            print("User click Dismiss button")
-        }))
-        
-        self.present(alert, animated: true, completion: {
-            print("completion block")
-        })
-    }
+    func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
+        scanner.dismiss(animated: true, completion: nil)
+   }
     
-    @objc func socialSecurityNumberAction(sender: UITapGestureRecognizer) {
-        
-        let alert = UIAlertController(title: "Choose Option", message: "Please Select an Option", preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Camera button")
-            
-            // MARK: - Take_image
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .camera
-                imagePicker.allowsEditing = false
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-            
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Gallery button")
-            
-            // MARK: - Take_Gallery
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .photoLibrary
-                imagePicker.allowsEditing = true
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Documents", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Documents button")
-            
-            let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.pdf"], in: .import)
-            documentPicker.delegate = self
-            self.present(documentPicker, animated: true, completion: nil)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (_ UIAlertAction)in
-            print("User click Dismiss button")
-        }))
-        
-        self.present(alert, animated: true, completion: {
-            print("completion block")
-        })
-    }
-    
-    @objc func residenceProofAction(sender: UITapGestureRecognizer) {
-        
-        let alert = UIAlertController(title: "Choose Option", message: "Please Select an Option", preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Camera button")
-            
-            // MARK: - Take_image
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .camera
-                imagePicker.allowsEditing = false
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-            
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Gallery button")
-            
-            // MARK: - Take_Gallery
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .photoLibrary
-                imagePicker.allowsEditing = true
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Documents", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Documents button")
-            
-            let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.pdf"], in: .import)
-            documentPicker.delegate = self
-            self.present(documentPicker, animated: true, completion: nil)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (_ UIAlertAction)in
-            print("User click Dismiss button")
-        }))
-        
-        self.present(alert, animated: true, completion: {
-            print("completion block")
-        })
-    }
-    
-    @objc func otherDocument1Action(sender: UITapGestureRecognizer) {
-        
-        let alert = UIAlertController(title: "Choose Option", message: "Please Select an Option", preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Camera button")
-            
-            // MARK: - Take_image
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .camera
-                imagePicker.allowsEditing = false
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-            
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Gallery button")
-            
-            // MARK: - Take_Gallery
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .photoLibrary
-                imagePicker.allowsEditing = true
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Documents", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Documents button")
-            
-            let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.pdf"], in: .import)
-            documentPicker.delegate = self
-            self.present(documentPicker, animated: true, completion: nil)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (_ UIAlertAction)in
-            print("User click Dismiss button")
-        }))
-        
-        self.present(alert, animated: true, completion: {
-            print("completion block")
-        })
-    }
-    
-    @objc func otherDocument2Action(sender: UITapGestureRecognizer) {
-        
-        let alert = UIAlertController(title: "Choose Option", message: "Please Select an Option", preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Camera button")
-            
-            // MARK: - Take_image
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .camera
-                imagePicker.allowsEditing = false
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-            
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Gallery button")
-            
-            // MARK: - Take_Gallery
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                let imagePicker = UIImagePickerController()
-                imagePicker.delegate = self
-                imagePicker.sourceType = .photoLibrary
-                imagePicker.allowsEditing = true
-                self.present(imagePicker, animated: true, completion: nil)
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Documents", style: .default, handler: { (_ UIAlertAction)in
-            print("User click Documents button")
-            
-            let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.pdf"], in: .import)
-            documentPicker.delegate = self
-            self.present(documentPicker, animated: true, completion: nil)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (_ UIAlertAction)in
-            print("User click Dismiss button")
-        }))
-        
-        self.present(alert, animated: true, completion: {
-            print("completion block")
-        })
-    }
 }

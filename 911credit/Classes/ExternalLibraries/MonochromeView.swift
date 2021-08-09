@@ -17,19 +17,34 @@ struct Angle {
 class MonochromeView: UIView {
     // MonoChromeArc Properties
     
-    var data = [Angle(startAngle: 0.0, endAngle: 0.31, color: #colorLiteral(red: 0.8, green: 0.09411764706, blue: 0.09411764706, alpha: 1), duration: 0.0),
-                Angle(startAngle: 0.32, endAngle: 0.33, color: .white, duration: 0.0),
+//    var data = [Angle(startAngle: 0.0, endAngle: 0.31, color: #colorLiteral(red: 0.8, green: 0.09411764706, blue: 0.09411764706, alpha: 1), duration: 0.0),
+//                Angle(startAngle: 0.32, endAngle: 0.33, color: .white, duration: 0.0),
+//
+//                Angle(startAngle: 0.34, endAngle: 0.43, color: #colorLiteral(red: 1, green: 0.337254902, blue: 0.337254902, alpha: 1), duration: 0.0),
+//                Angle(startAngle: 0.44, endAngle: 0.45, color: .white, duration: 0.0),
+//
+//                Angle(startAngle: 0.46, endAngle: 0.56, color: #colorLiteral(red: 1, green: 0.7960784314, blue: 0, alpha: 1), duration: 0.0),
+//                Angle(startAngle: 0.57, endAngle: 0.58, color: .white, duration: 0.0),
+//
+//                Angle(startAngle: 0.59, endAngle: 0.73, color: #colorLiteral(red: 0.1607843137, green: 0.937254902, blue: 0.5843137255, alpha: 1), duration: 0.0),
+//                Angle(startAngle: 0.74, endAngle: 0.75, color: .white, duration: 0.0),
+//
+//                Angle(startAngle: 0.76, endAngle: 1.0, color: #colorLiteral(red: 0.1921568627, green: 0.8509803922, blue: 0.5490196078, alpha: 1), duration: 0.0)]
+    
+    var data = [Angle(startAngle: 0.0, endAngle: 0.20, color: #colorLiteral(red: 0.8, green: 0.09411764706, blue: 0.09411764706, alpha: 1), duration: 0.0),
+                Angle(startAngle: 0.21, endAngle: 0.22, color: .white, duration: 0.0),
                 
-                Angle(startAngle: 0.34, endAngle: 0.43, color: #colorLiteral(red: 1, green: 0.337254902, blue: 0.337254902, alpha: 1), duration: 0.0),
-                Angle(startAngle: 0.44, endAngle: 0.45, color: .white, duration: 0.0),
+                Angle(startAngle: 0.23, endAngle: 0.38, color: #colorLiteral(red: 1, green: 0.337254902, blue: 0.337254902, alpha: 1), duration: 0.0),
+                Angle(startAngle: 0.39, endAngle: 0.40, color: .white, duration: 0.0),
                 
-                Angle(startAngle: 0.46, endAngle: 0.56, color: #colorLiteral(red: 1, green: 0.7960784314, blue: 0, alpha: 1), duration: 0.0),
-                Angle(startAngle: 0.57, endAngle: 0.58, color: .white, duration: 0.0),
+                Angle(startAngle: 0.41, endAngle: 0.61, color: #colorLiteral(red: 1, green: 0.7960784314, blue: 0, alpha: 1), duration: 0.0),
+                Angle(startAngle: 0.62, endAngle: 0.63, color: .white, duration: 0.0),
                 
-                Angle(startAngle: 0.59, endAngle: 0.73, color: #colorLiteral(red: 0.1607843137, green: 0.937254902, blue: 0.5843137255, alpha: 1), duration: 0.0),
-                Angle(startAngle: 0.74, endAngle: 0.75, color: .white, duration: 0.0),
+                Angle(startAngle: 0.64, endAngle: 0.79, color: #colorLiteral(red: 0.1607843137, green: 0.937254902, blue: 0.5843137255, alpha: 1), duration: 0.0),
+                Angle(startAngle: 0.80, endAngle: 0.81, color: .white, duration: 0.0),
                 
-                Angle(startAngle: 0.76, endAngle: 1.0, color: #colorLiteral(red: 0.1921568627, green: 0.8509803922, blue: 0.5490196078, alpha: 1), duration: 0.0)]
+                Angle(startAngle: 0.81, endAngle: 1.0, color: #colorLiteral(red: 0.1921568627, green: 0.8509803922, blue: 0.5490196078, alpha: 1), duration: 0.0)]
+
 
     // User Properties
     private var pointToDraw: CGFloat = 0.5
@@ -38,12 +53,12 @@ class MonochromeView: UIView {
     var drawDot = false
     
     /// This holds the starting angle of the arc.
-    private let arcStartAngleInDegrees: CGFloat = 157.5
+    private let arcStartAngleInDegrees: CGFloat = 180
     /// This holds the total area of the arc.
-    private let totalArcArea: CGFloat = 225
+    private let totalArcArea: CGFloat = 180
     
     // CALayer Properties
-    private let outerArclineWidth: CGFloat = 5
+    private let outerArclineWidth: CGFloat = 7
     private let animationDuration: Double = 1
     private var previousStartAngle: CGFloat = 0.0
     
@@ -59,14 +74,14 @@ class MonochromeView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        if !drawDot{
+        if !drawDot {
             configureView(with: 1.0, isMonoChrome: false)
         }
     }
     
     private func drawOutlineArc() {
         let layer = CAShapeLayer()
-        layer.path = self.createRectangle(startAngle: CGFloat(157), endAngle: CGFloat(22))
+        layer.path = self.createRectangle(startAngle: CGFloat(180), endAngle: CGFloat(22))
         layer.lineWidth = outerArclineWidth
 //        layer.strokeColor = UIColor.lightGray.cgColor
         layer.fillColor = UIColor.clear.cgColor
@@ -76,7 +91,7 @@ class MonochromeView: UIView {
     
     private func drawInnerArcTest() {
         let layer = CAShapeLayer()
-        layer.path = self.createRectangle(startAngle: CGFloat(157.5), endAngle: CGFloat(22.5))
+        layer.path = self.createRectangle(startAngle: CGFloat(180), endAngle: CGFloat(22.5))
         layer.lineWidth = outerArclineWidth-2
         layer.strokeColor = UIColor.yellow.cgColor
         layer.fillColor = UIColor.clear.cgColor
@@ -162,22 +177,29 @@ class MonochromeView: UIView {
             let startAngle = getRadians(0).toRadians()
             let endAngle = getRadians(value).toRadians()
             
-            let arcCenter = CGPoint(x: bounds.size.width / 2-1.5, y: bounds.size.height / 2)
-            let circleRadius = bounds.size.width / 2
+            let arcCenter = CGPoint(x: bounds.size.width / 2, y: bounds.size.height / 2)
+            let circleRadius = self.frame.size.height/2-(outerArclineWidth/2)
             let circlePath = UIBezierPath(arcCenter: arcCenter, radius: circleRadius, startAngle: startAngle, endAngle:endAngle, clockwise: true)
+            circlePath.lineWidth = outerArclineWidth - 2
             
-            // Make the view color transparent            
+            // Make the view color transparent
             let imageLayer = CAShapeLayer()
             imageLayer.backgroundColor = UIColor.clear.cgColor
-            imageLayer.bounds = CGRect(x: self.frame.size.width/2, y: self.frame.size.height/2 , width: 28, height: 28)
+            imageLayer.bounds = CGRect(x: self.frame.size.width/2, y: self.frame.size.height/2 , width: 25, height: 25)
             imageLayer.position = CGPoint(x:0, y: 0)
+            imageLayer.lineWidth = outerArclineWidth - 2
+
             imageLayer.contents = UIImage(named:"sliderDot")?.cgImage
+            
+
             self.layer.addSublayer(imageLayer)
+
+            
             
             let pathAnimation: CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "position")
             pathAnimation.duration = 1
             pathAnimation.path = circlePath.cgPath
-            pathAnimation.repeatCount = 0
+            pathAnimation.repeatCount = 1
             pathAnimation.calculationMode = CAAnimationCalculationMode.paced
             pathAnimation.rotationMode = CAAnimationRotationMode.rotateAuto
             pathAnimation.fillMode = CAMediaTimingFillMode.forwards
@@ -198,13 +220,13 @@ class MonochromeView: UIView {
                 
 //                label.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 3.5)
                 
-            } else if currentIndex == 2{
-                let shapeFrame = CGRect(x: pathBounds.origin.x - 17, y: pathBounds.origin.y - 15, width:
+            } else if currentIndex == 2 {
+                let shapeFrame = CGRect(x: pathBounds.origin.x - 20, y: pathBounds.origin.y, width:
                                             30, height: 20)
                 
                 label = getLabel(frame: shapeFrame, text: "500")
                 
-                label.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 4.5)
+                label.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 5)
                 
             }else if currentIndex == 4 {
                 let shapeFrame = CGRect(x: pathBounds.origin.x , y: pathBounds.origin.y - 25, width:
@@ -218,14 +240,14 @@ class MonochromeView: UIView {
                                             30, height: 20)
                 
                 label = getLabel(frame: shapeFrame, text: "650")
-                label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 5)
+                label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 5.5)
                 
             } else if currentIndex == 8 {
                 let shapeFrame = CGRect(x: pathBounds.origin.x + 10 , y: pathBounds.origin.y - 5, width:
                                             30, height: 20)
                 
                 label = getLabel(frame: shapeFrame, text: "750")
-                label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2.5)
+                label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
                 
 //                let shapeFrame2 = CGRect(x: pathBounds.origin.x , y: pathBounds.origin.y + 125, width:
 //                                            30, height: 20)

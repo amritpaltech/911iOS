@@ -10,7 +10,7 @@ import UIKit
 class CaseManagementViewController: BaseViewController {
     
     @IBOutlet weak var caseManagementTableview: UITableView!
-    
+    var cases : [Cases] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setLeftAlignedNavigationItemTitle(text: "Case Management")
@@ -26,6 +26,18 @@ extension CaseManagementViewController {
         self.caseManagementTableview.delegate = self
         self.caseManagementTableview.dataSource = self
         self.caseManagementTableview.register(UINib(nibName: "CaseManagementCell", bundle: nil), forCellReuseIdentifier: "CaseManagementCell")
+        self.getCaseList()
+    }
+    
+    
+    func getCaseList() {
+        Utils.showSpinner()
+        APIServices.getCaseList{list in
+            Utils.hideSpinner()
+            //load dashboard data
+            self.cases = list ?? []
+            self.caseManagementTableview.reloadData()
+        }
     }
 }
 
@@ -33,12 +45,14 @@ extension CaseManagementViewController {
 extension CaseManagementViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.cases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = caseManagementTableview.dequeueReusableCell(withIdentifier: "CaseManagementCell") as? CaseManagementCell ?? CaseManagementCell()
-        
+        let obj = self.cases[indexPath.row]
+        cell.initCell(obj)
+        cell.descriptionLabel.numberOfLines = 3
         return cell
     }
     
@@ -49,6 +63,8 @@ extension CaseManagementViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let vc = self.storyboard?.instantiateViewController(
                 withIdentifier: "CaseManagementDetailsViewController") as? CaseManagementDetailsViewController else { return }
+        
+        vc.caseMangement = self.cases[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
 }

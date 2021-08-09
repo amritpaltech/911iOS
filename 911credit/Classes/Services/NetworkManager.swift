@@ -19,6 +19,9 @@ enum API: String {
     case getuserinfo = "get-user-info"
     case securityquestions = "authquestions"
     case updateavatar = "update-avatar"
+    case cases = "get-cases"
+    case docList = "get-doc-list"
+    case uploadDocument = "upload-document"
 }
 
 enum ContentType: String {
@@ -158,11 +161,12 @@ class NetworkManager: NSObject {
     func requestUploadImage(path: String,
                             params: [String: Any],
                             contentType: ContentType,
+                            filename:String = "file.jpg",
                             resultHandler: @escaping ResultClosure) {
         
         makeNetworkActivityHidden(false)
         let requestType = RequestType.post
-        let requestPost = self.requestUpload(with: contentType, path: path, params: params)
+        let requestPost = self.requestUpload(with: contentType, path: path, params: params,filename: filename)
         let task = self.requestDataTask(request: requestPost, requestType: requestType, resultHandler: resultHandler)
         
         task?.resume()
@@ -310,7 +314,47 @@ class NetworkManager: NSObject {
         return request
     }
     
-    func  requestUpload(with contentType: ContentType, path: String, params: [String: Any]?) -> URLRequest {
+    func callApiByMultiPart(urlStr:String,params:[String:AnyObject],fileURLs: [NSURL]?,_ completionHandler:@escaping ((_ response:Data,_ statusCode:Int) -> Void ),_ failure: @escaping ((_ error:Error? ,_ statusCode:Int?) -> Void ))
+    {
+        do{
+            if let url = NSURL(string: urlStr){
+                if let token = Utils.getUserInfo()?.apiToken{
+                    let task = try URLSession.shared.dataMultipartTaskWithURL(URL: url, parameters: params,token: token, fileKeyName: "file", fileURLs: fileURLs, completionHandler: {(data, response, error) in
+                        
+                        let converting = NSString(data: data ?? Data(), encoding: String.Encoding.utf8.rawValue)
+                        print("response",converting ?? "")
+                        
+                        let statusCode = (response as? HTTPURLResponse)?.statusCode
+                        if statusCode == 200
+                        {
+                            if data != nil
+                            {
+                                completionHandler(data!,statusCode!)
+                            }
+                        }else if statusCode == 201{
+                            if data != nil
+                            {
+                                completionHandler(data!,statusCode!)
+                            }
+                        }
+                        else
+                        {
+                            if data != nil{
+                                completionHandler(data!,statusCode ?? 400)
+                            }
+                            print("Error is :\(String(describing: error))")
+                        }
+                    })
+                    task.resume()
+                }
+            }
+        }catch let error{
+            print(error)
+        }
+    }
+
+    
+    func  requestUpload(with contentType: ContentType, path: String, params: [String: Any]?,filename:String? = "file.jpg") -> URLRequest {
         
         let POSTBoundary = "friends-boundary"
         let charset = String(CFStringConvertEncodingToIANACharSetName(CFStringEncoding(String.Encoding.utf8.rawValue)))
@@ -330,7 +374,7 @@ class NetworkManager: NSObject {
         for (key, value) in params! {
             body.append("--\(POSTBoundary)\r\n".data(using: String.Encoding.utf8)!)
             if let data = value as? Data {
-                body.append("Content-Disposition: form-data; name=\"\(key)\"; filename=\"\("file.jpg")\"\r\n".data(using: String.Encoding.utf8)!)
+                body.append("Content-Disposition: form-data; name=\"\(key)\"; filename=\"\("\(filename)")\"\r\n".data(using: String.Encoding.utf8)!)
                 body.append("Content-Type: \("image/jpg")\r\n\r\n".data(using: String.Encoding.utf8)!)
                 body.append(data)
                 body.append("\r\n".data(using: String.Encoding.utf8)!)

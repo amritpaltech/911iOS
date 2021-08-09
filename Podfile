@@ -15,5 +15,5 @@ target '911credit' do
   pod 'Kingfisher'
   pod 'Charts'
   pod 'MSCircularSlider'
-
+  pod 'WeScan'
 end

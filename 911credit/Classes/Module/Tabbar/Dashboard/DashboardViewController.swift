@@ -29,8 +29,8 @@ class DashboardViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUserInfo()
         setupUI()
+        getUserInfo()
         setUpCalendar()
         self.tableView.contentInsetAdjustmentBehavior = .never
         self.automaticallyAdjustsScrollViewInsets = false
@@ -41,6 +41,7 @@ class DashboardViewController: BaseViewController {
 extension DashboardViewController {
     func setupUI() {
         self.navigationItem.title = "Dashboard"
+        setupMeterView()
 
         tableView.setContentOffset(.zero, animated: false)
         setUpCalendar()
@@ -57,8 +58,6 @@ extension DashboardViewController {
         slider?.isUserInteractionEnabled = false
         slider?.handleImage = #imageLiteral(resourceName: "sliderDot")
         slider?.currentValue = 0
-        
-        setupMeterView()
     }
     
     
@@ -117,21 +116,17 @@ extension DashboardViewController {
         lineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
         lineChart.legend.enabled = false
         lineChart.xAxis.labelFont = UIFont.systemFont(ofSize: 7)
-
+        
         lineChart.pinchZoomEnabled = false
         lineChart.isUserInteractionEnabled = false
         
-        if dataPoints.count == 12 {
-            lineChart.xAxis.labelCount = 13
-            lineChart.xAxis.setLabelCount(13, force: true)
-        } else {
-            lineChart.xAxis.labelCount = dataPoints.count
-        }
+        lineChart.xAxis.labelCount = dataPoints.count
+        lineChart.xAxis.setLabelCount(dataPoints.count, force: true)
         
         lineChart.leftAxis.drawGridLinesEnabled = false
         lineChart.rightAxis.drawGridLinesEnabled = false
         lineChart.drawGridBackgroundEnabled = false
-
+        
     }
 
 }
@@ -173,11 +168,25 @@ extension DashboardViewController {
                 }
             }
             let doubleScore = Double(report.score ?? "") ?? 0
-            let scorePerc = ((doubleScore - 300)*100)/(900-300)
-            
-            
-            self.meterView.drawDot(value: CGFloat(scorePerc)/100)
-            
+            let scorePerc = ((doubleScore)*100)/(900)
+
+            DispatchQueue.main.asyncAfter(deadline: .now()+1.5) {
+                if doubleScore >= 300 && doubleScore < 500 {
+                    if doubleScore == 300 {
+                        self.meterView.drawDot(value: CGFloat(0.01))
+                    } else {
+                        self.getAngle(min: 300, max: 499, value: doubleScore,startAngle: 0.0,endAngle: 0.20)
+                    }
+                } else if  doubleScore >= 500 && doubleScore < 575 {
+                    self.getAngle(min: 500, max: 574, value: doubleScore,startAngle: 0.23,endAngle: 0.38)
+                } else if  doubleScore >= 575 && doubleScore < 650{
+                    self.getAngle(min: 575, max: 649, value: doubleScore,startAngle: 0.41,endAngle: 0.61)
+                } else if  doubleScore >= 650 && doubleScore < 750 {
+                    self.getAngle(min: 650, max: 749, value: doubleScore,startAngle: 0.64,endAngle: 0.79)
+                } else if  doubleScore >= 750 && doubleScore <= 900 {
+                    self.getAngle(min: 750, max: 900, value: doubleScore,startAngle: 0.81,endAngle: 1.0)
+                }
+            }
             self.slider.currentValue = scorePerc
             slider?.changeColor(at: 0, newColor: .red)
             slider?.changeColor(at: 1, newColor: .yellow)
@@ -197,9 +206,20 @@ extension DashboardViewController {
                     showMonth.append(months[value-1])
                 }
             }
+            print("months",showMonth)
+            print("pointsList",pointsList)
+
             setChart(dataPoints: showMonth, values: pointsList)
         }
     }
+    
+    func getAngle(min:Double,max:Double,value:Double,startAngle:Double,endAngle:Double){
+        let scorePerc = ((value - min)*100)/(max-min)
+        var value = ((endAngle-startAngle)*scorePerc/100) + startAngle
+        self.meterView.drawDot(value: CGFloat(value))
+
+    }
+    
     
     func convertToDate(_ date:String) -> Date {
         let dateFormatter = DateFormatter()

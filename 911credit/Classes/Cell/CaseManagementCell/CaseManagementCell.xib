@@ -39,20 +39,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Biy-Hl-oKh">
-                                <rect key="frame" x="35" y="54" width="33" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Open" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Biy-Hl-oKh">
+                                <rect key="frame" x="35" y="54" width="41" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="E1a-jy-sER"/>
-                                    <constraint firstAttribute="width" constant="33" id="hwm-Bs-jDb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 June 2021" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39V-Zp-sD6">
-                                <rect key="frame" x="85" y="54" width="86" height="17"/>
+                                <rect key="frame" x="86" y="54" width="85" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="86" id="UD1-tI-KvT"/>
                                     <constraint firstAttribute="height" constant="17" id="zsW-TT-tDn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
@@ -107,6 +105,7 @@
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avtar1" translatesAutoresizingMaskIntoConstraints="NO" id="lOm-B9-ya6">
                                 <rect key="frame" x="182" y="47" width="32" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="IdA-bZ-yuY"/>
                                     <constraint firstAttribute="width" constant="32" id="NnR-yo-GbC"/>
@@ -146,7 +145,7 @@
                             <constraint firstItem="lol-XK-ZZD" firstAttribute="leading" secondItem="39V-Zp-sD6" secondAttribute="trailing" constant="26" id="9eP-mF-rj5"/>
                             <constraint firstAttribute="trailing" secondItem="iXk-M2-Ncc" secondAttribute="trailing" id="BYg-8z-QNI"/>
                             <constraint firstItem="Biy-Hl-oKh" firstAttribute="leading" secondItem="jOF-S7-kMc" secondAttribute="leading" constant="35" id="FJL-ZF-tSc"/>
-                            <constraint firstItem="39V-Zp-sD6" firstAttribute="leading" secondItem="Biy-Hl-oKh" secondAttribute="trailing" constant="17" id="FWc-KS-Gd5"/>
+                            <constraint firstItem="39V-Zp-sD6" firstAttribute="leading" secondItem="Biy-Hl-oKh" secondAttribute="trailing" constant="10" id="FWc-KS-Gd5"/>
                             <constraint firstAttribute="trailing" secondItem="lOm-B9-ya6" secondAttribute="trailing" constant="106" id="Q7O-HZ-mPo"/>
                             <constraint firstItem="Vst-dy-gOE" firstAttribute="top" secondItem="Uh7-lm-xJO" secondAttribute="bottom" constant="26" id="SZ5-9F-EKD"/>
                             <constraint firstAttribute="bottom" secondItem="Vst-dy-gOE" secondAttribute="bottom" constant="10" id="UtP-C4-AOV"/>

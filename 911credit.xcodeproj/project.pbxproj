@@ -84,6 +84,16 @@
 		F526C63C26B185FD003CAD7A /* Credit_report_history.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63926B185FD003CAD7A /* Credit_report_history.swift */; };
 		F526C63D26B185FD003CAD7A /* Pivot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63A26B185FD003CAD7A /* Pivot.swift */; };
 		F526C63F26B18EE2003CAD7A /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F526C63E26B18EE1003CAD7A /* PhotoManager.swift */; };
+		F570996726BF8E2200C7C9FE /* Matters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570996426BF8E2200C7C9FE /* Matters.swift */; };
+		F570996826BF8E2200C7C9FE /* Agent_details.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570996526BF8E2200C7C9FE /* Agent_details.swift */; };
+		F570996926BF8E2200C7C9FE /* Cases.swift in Sources */ = {isa = PBXBuildFile; fileRef = F570996626BF8E2200C7C9FE /* Cases.swift */; };
+		F5E2D5E226C1309900BE1E75 /* Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2D5DF26C1309800BE1E75 /* Documents.swift */; };
+		F5E2D5E326C1309900BE1E75 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2D5E026C1309800BE1E75 /* Document.swift */; };
+		F5E2D5E626C150FA00BE1E75 /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2D5E526C150F900BE1E75 /* DocumentCell.swift */; };
+		F5E2D5E826C153DE00BE1E75 /* DocumentSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2D5E726C153DE00BE1E75 /* DocumentSectionCell.swift */; };
+		F5E2D5EF26C1675800BE1E75 /* NSURLSession+Multipart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2D5EC26C1675700BE1E75 /* NSURLSession+Multipart.swift */; };
+		F5E2D5F026C1675800BE1E75 /* NSMutableData+AppendString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2D5ED26C1675700BE1E75 /* NSMutableData+AppendString.swift */; };
+		F5E2D5F326C16BE800BE1E75 /* FileDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E2D5F226C16BE800BE1E75 /* FileDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +180,16 @@
 		F526C63926B185FD003CAD7A /* Credit_report_history.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credit_report_history.swift; sourceTree = "<group>"; };
 		F526C63A26B185FD003CAD7A /* Pivot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pivot.swift; sourceTree = "<group>"; };
 		F526C63E26B18EE1003CAD7A /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
+		F570996426BF8E2200C7C9FE /* Matters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matters.swift; sourceTree = "<group>"; };
+		F570996526BF8E2200C7C9FE /* Agent_details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agent_details.swift; sourceTree = "<group>"; };
+		F570996626BF8E2200C7C9FE /* Cases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cases.swift; sourceTree = "<group>"; };
+		F5E2D5DF26C1309800BE1E75 /* Documents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Documents.swift; sourceTree = "<group>"; };
+		F5E2D5E026C1309800BE1E75 /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		F5E2D5E526C150F900BE1E75 /* DocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
+		F5E2D5E726C153DE00BE1E75 /* DocumentSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSectionCell.swift; sourceTree = "<group>"; };
+		F5E2D5EC26C1675700BE1E75 /* NSURLSession+Multipart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSession+Multipart.swift"; sourceTree = "<group>"; };
+		F5E2D5ED26C1675700BE1E75 /* NSMutableData+AppendString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableData+AppendString.swift"; sourceTree = "<group>"; };
+		F5E2D5F226C16BE800BE1E75 /* FileDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +207,8 @@
 		0403E6732693060400981DF7 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
+				F5E2D5E426C150E500BE1E75 /* View */,
+				F5E2D5DD26C1304400BE1E75 /* Model */,
 				0403E6742693062400981DF7 /* DocumentsViewController.swift */,
 			);
 			path = Documents;
@@ -360,6 +382,8 @@
 		049529C62699C1F900221095 /* ExternalLibraries */ = {
 			isa = PBXGroup;
 			children = (
+				F5E2D5F126C16BE800BE1E75 /* Downloader */,
+				F5E2D5E926C1675700BE1E75 /* MultiPart */,
 				F512D31726B92C4F00740A67 /* MonochromeView.swift */,
 				049529C72699C20500221095 /* roundedCornerView.swift */,
 			);
@@ -482,6 +506,7 @@
 		04EF707A268D9110007F870B /* CaseManagement */ = {
 			isa = PBXGroup;
 			children = (
+				F570996326BF8E0D00C7C9FE /* Model */,
 				044731152690465F00C1C3D4 /* CaseManagementDetails */,
 				04EF7080268D91C0007F870B /* CaseManagementViewController.swift */,
 			);
@@ -639,6 +664,59 @@
 				F526C63426B185EC003CAD7A /* Userinfo.swift */,
 			);
 			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		F570996326BF8E0D00C7C9FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F570996526BF8E2200C7C9FE /* Agent_details.swift */,
+				F570996626BF8E2200C7C9FE /* Cases.swift */,
+				F570996426BF8E2200C7C9FE /* Matters.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F5E2D5DD26C1304400BE1E75 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F5E2D5DF26C1309800BE1E75 /* Documents.swift */,
+				F5E2D5E026C1309800BE1E75 /* Document.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F5E2D5E426C150E500BE1E75 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F5E2D5E526C150F900BE1E75 /* DocumentCell.swift */,
+				F5E2D5E726C153DE00BE1E75 /* DocumentSectionCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F5E2D5E926C1675700BE1E75 /* MultiPart */ = {
+			isa = PBXGroup;
+			children = (
+				F5E2D5EA26C1675700BE1E75 /* Source */,
+			);
+			path = MultiPart;
+			sourceTree = "<group>";
+		};
+		F5E2D5EA26C1675700BE1E75 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				F5E2D5EC26C1675700BE1E75 /* NSURLSession+Multipart.swift */,
+				F5E2D5ED26C1675700BE1E75 /* NSMutableData+AppendString.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		F5E2D5F126C16BE800BE1E75 /* Downloader */ = {
+			isa = PBXGroup;
+			children = (
+				F5E2D5F226C16BE800BE1E75 /* FileDownloader.swift */,
+			);
+			path = Downloader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -802,17 +880,20 @@
 				F526C63C26B185FD003CAD7A /* Credit_report_history.swift in Sources */,
 				040F1EC62699A256006C6E09 /* ChatDetailsViewController.swift in Sources */,
 				042E9F86268B57E000066EE1 /* ViewerCell.swift in Sources */,
+				F5E2D5E226C1309900BE1E75 /* Documents.swift in Sources */,
 				0459939E26A95D980089CA3E /* OptionQuestionTableCell.swift in Sources */,
 				0403E6752693062400981DF7 /* DocumentsViewController.swift in Sources */,
 				C037C03F2689B6D5005F6EF2 /* UIDeviceExtension.swift in Sources */,
 				048E1F942696FE6F00119C10 /* User.swift in Sources */,
 				04EF7090268DE8F3007F870B /* SecureCodeTextField.swift in Sources */,
+				F5E2D5EF26C1675800BE1E75 /* NSURLSession+Multipart.swift in Sources */,
 				04AFBFAB26A955EA00245895 /* SecurityOptionCell.swift in Sources */,
 				F526C63F26B18EE2003CAD7A /* PhotoManager.swift in Sources */,
 				04E906DB2692ED1F00CFADAE /* NotificationsCell.swift in Sources */,
 				048DE23726902DFF005D8A6A /* CaseManagementCell.swift in Sources */,
 				F526C63726B185EC003CAD7A /* Roles.swift in Sources */,
 				C037C0422689B6F9005F6EF2 /* AlertViewControllerExtension.swift in Sources */,
+				F5E2D5F026C1675800BE1E75 /* NSMutableData+AppendString.swift in Sources */,
 				C037C0452689B715005F6EF2 /* FontExtension.swift in Sources */,
 				044BA2F826AA9DAF004DD1FA /* Security.swift in Sources */,
 				F526C63626B185EC003CAD7A /* Userinfo.swift in Sources */,
@@ -821,11 +902,13 @@
 				044731172690468100C1C3D4 /* CaseManagementDetailsViewController.swift in Sources */,
 				04EF7085268DBCA0007F870B /* ColorExtension.swift in Sources */,
 				048E1F8E2696F71E00119C10 /* NetworkManager.swift in Sources */,
+				F5E2D5E826C153DE00BE1E75 /* DocumentSectionCell.swift in Sources */,
 				04A88A74268EE40D00A279E3 /* ForgotPasswordViewController.swift in Sources */,
 				C037C0482689B72A005F6EF2 /* TableViewExtension.swift in Sources */,
 				04EF7081268D91C0007F870B /* CaseManagementViewController.swift in Sources */,
 				C037C04B2689B753005F6EF2 /* StringExtension.swift in Sources */,
 				048E1F962696FF9300119C10 /* Utils+Credit.swift in Sources */,
+				F570996726BF8E2200C7C9FE /* Matters.swift in Sources */,
 				04EF707D268D9181007F870B /* DashboardViewController.swift in Sources */,
 				04228FB82692CDF4006F3423 /* MyProfileViewController.swift in Sources */,
 				042E9F7A268B4BDA00066EE1 /* BaseViewController.swift in Sources */,
@@ -835,6 +918,7 @@
 				F526C63B26B185FD003CAD7A /* Credit_report.swift in Sources */,
 				04228FBB2692CE17006F3423 /* ChangePasswordViewController.swift in Sources */,
 				C037C00F2689B434005F6EF2 /* AppDelegate.swift in Sources */,
+				F5E2D5E326C1309900BE1E75 /* Document.swift in Sources */,
 				040F1ED52699A7A1006C6E09 /* Message.swift in Sources */,
 				F512D31826B92C5000740A67 /* MonochromeView.swift in Sources */,
 				04EF707F268D91A1007F870B /* ChatViewController.swift in Sources */,
@@ -842,6 +926,8 @@
 				040F1ECE2699A593006C6E09 /* LeftViewCell.swift in Sources */,
 				040F1ED82699A882006C6E09 /* MessageStore.swift in Sources */,
 				04AFBF9A26A94FEF00245895 /* SecurityQuestionViewController.swift in Sources */,
+				F5E2D5E626C150FA00BE1E75 /* DocumentCell.swift in Sources */,
+				F5E2D5F326C16BE800BE1E75 /* FileDownloader.swift in Sources */,
 				04AFBF9C26A9501E00245895 /* SecurityOptionsViewController.swift in Sources */,
 				048E1F902696F75C00119C10 /* APIServices.swift in Sources */,
 				04AFBFA426A9557D00245895 /* SecurityQuestionCell.swift in Sources */,
@@ -849,6 +935,8 @@
 				C037C02E2689B5CA005F6EF2 /* Constant.swift in Sources */,
 				042E9F7E268B4C5C00066EE1 /* LoginViewController.swift in Sources */,
 				C037C0312689B5DB005F6EF2 /* Utils.swift in Sources */,
+				F570996826BF8E2200C7C9FE /* Agent_details.swift in Sources */,
+				F570996926BF8E2200C7C9FE /* Cases.swift in Sources */,
 				040F1ED22699A5AD006C6E09 /* RightViewCell.swift in Sources */,
 				F526C63D26B185FD003CAD7A /* Pivot.swift in Sources */,
 			);
@@ -1000,7 +1088,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 4RX3ES2DZ5;
 				INFOPLIST_FILE = 911credit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -1024,7 +1112,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 4RX3ES2DZ5;
 				INFOPLIST_FILE = 911credit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;

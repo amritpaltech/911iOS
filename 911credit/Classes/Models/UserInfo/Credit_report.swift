@@ -15,7 +15,7 @@ import Foundation
 class CreditReport : Codable {
 	let id : Int?
 	let userId : Int?
-	let score : String?
+	var score : String?
 	let scoreDate : String?
 	let source : String?
 	let reportIdentifier : String?
