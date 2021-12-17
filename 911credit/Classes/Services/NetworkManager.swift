@@ -78,12 +78,32 @@ class NetworkManager: NSObject {
     // var lastSessionTask: URLSessionDataTask?
     
     var defaultHeaders: [String: String] {
+        
         var dict = [String: String]()
         dict["Accept"] = "application/json"
         dict["User-Agent"] = NetworkManager.getUserAgent()
         if let token = Utils.getUserInfo()?.apiToken {
             dict["Authorization"] = "Bearer \(token)"
         }
+        
+        dict["device_type"] = "iOS"
+        dict["device_info"] = UIDevice.current.name
+        dict["device_timezone"] = TimeZone.current.identifier
+        
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            dict["app_version"] = version
+        }
+        
+        if let udid =  UIDevice.current.identifierForVendor?.uuidString {
+            dict["device_unique_id"] = udid
+        }
+        
+        if let fcmToken = AppDelegate.shared?.fcmToken {
+            
+            dict["device_id"] = fcmToken
+        }
+        
+        print(dict)
         //        dict["Authorization"] = "Bearer n168VBfVAt0XXsT6jqePsItoiFEDLbObxF9g1j5yQj8AgquDyGy5sSE4ewvGT"
         return dict
     }

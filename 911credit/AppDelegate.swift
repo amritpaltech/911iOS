@@ -7,11 +7,17 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Firebase
+import FirebaseMessaging
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var fcmToken: String?
+    var notificationLaunchOption: [String: AnyObject]?
+    var restrictRotation = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Thread.sleep(forTimeInterval: 2)
@@ -28,7 +34,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        setupStoryBoard(storyboard: Storyboard.authentication)
         navigationAppreance()
         IQKeyboardManager.shared.enable = true
+        
+        FirebaseApp.configure()
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (grantet, error) in
+            
+            if error == nil {
+                
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }
+        
+        application.registerForRemoteNotifications()
+        
+        Messaging.messaging().delegate = self
+        
+        let notificationOption = launchOptions?[.remoteNotification]
+        if let notification = notificationOption as? [String: AnyObject] {
+            self.notificationLaunchOption = notification
+            startNotification()
+        } else {
+            self.notificationLaunchOption = nil
+        }
+        
         return true
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        
+        if let userInfotDict = userInfo as? [String : AnyObject] {
+            
+            self.notificationLaunchOption = userInfotDict
+            startNotification()
+        }
+    }
+    
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completion: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        /*if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        print("userInfo",userInfo)*/
+        completion(UIBackgroundFetchResult.newData)
+    }
+    
+    // [END receive_message]
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        
+        if !self.restrictRotation {
+            return UIInterfaceOrientationMask.portrait
+        } else {
+            return UIInterfaceOrientationMask.all
+        }
     }
     
     func navigationAppreance() {
@@ -83,5 +150,65 @@ extension AppDelegate {
         } else {
             setupTabbar()
         }
+    }
+    
+    func startNotification() {
+        
+        
+        print("Notification start.")
+        if let notification = notificationLaunchOption {
+
+            print("Notification Entered.......")
+            //let notifications = notification["notification"]!
+            
+            if let isPopup = notification["is_pop_up"] as? Int, isPopup == 1 {
+                
+                if let popupData = notification["pop_up_data"] as? [String: AnyObject] {
+                    
+                    let message = popupData["message"] as? String
+                    let title = popupData["title"] as? String
+                    Utils.alert(message: message!, title: title)
+                }
+            }
+        }
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
+        
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let userInfo = response.notification.request.content.userInfo
+        
+        print("User Info = ",response.notification.request.content.userInfo)
+        completionHandler()
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        print("\(notification.request.content.userInfo)")
+        
+        completionHandler([.alert, .badge, .sound])
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Firebase registration token: \(fcmToken)")
+        self.fcmToken = fcmToken
+        //let dataDict:[String: String] = ["token": fcmToken]
+        
+        //NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
 }

@@ -15,6 +15,7 @@
 		040F1ED32699A5AD006C6E09 /* RightViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040F1ED12699A5AD006C6E09 /* RightViewCell.xib */; };
 		040F1ED52699A7A1006C6E09 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F1ED42699A7A1006C6E09 /* Message.swift */; };
 		040F1ED82699A882006C6E09 /* MessageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040F1ED72699A882006C6E09 /* MessageStore.swift */; };
+		041A4DB6276BAB2700C25422 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041A4DB5276BAB2700C25422 /* SignatureViewController.swift */; };
 		04228FB82692CDF4006F3423 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04228FB72692CDF4006F3423 /* MyProfileViewController.swift */; };
 		04228FBB2692CE17006F3423 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04228FBA2692CE17006F3423 /* ChangePasswordViewController.swift */; };
 		042E9F76268B4B1D00066EE1 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 042E9F75268B4B1D00066EE1 /* Color.xcassets */; };
@@ -23,6 +24,7 @@
 		042E9F81268B522600066EE1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E9F80268B522600066EE1 /* UIView+Extension.swift */; };
 		042E9F86268B57E000066EE1 /* ViewerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E9F84268B57E000066EE1 /* ViewerCell.swift */; };
 		042E9F87268B57E000066EE1 /* ViewerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042E9F85268B57E000066EE1 /* ViewerCell.xib */; };
+		043601D026F1E11F00314D5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043601CF26F1E11F00314D5D /* GoogleService-Info.plist */; };
 		044731172690468100C1C3D4 /* CaseManagementDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044731162690468100C1C3D4 /* CaseManagementDetailsViewController.swift */; };
 		0447311D2690562D00C1C3D4 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0447311B2690562D00C1C3D4 /* ChatCell.swift */; };
 		0447311E2690562D00C1C3D4 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0447311C2690562D00C1C3D4 /* ChatCell.xib */; };
@@ -63,6 +65,7 @@
 		04EF708C268DC9A2007F870B /* MoreViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EF708A268DC9A2007F870B /* MoreViewTableViewCell.swift */; };
 		04EF708D268DC9A2007F870B /* MoreViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04EF708B268DC9A2007F870B /* MoreViewTableViewCell.xib */; };
 		04EF7090268DE8F3007F870B /* SecureCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EF708F268DE8F3007F870B /* SecureCodeTextField.swift */; };
+		04F0CFD2276CA2C900F110C7 /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0CFD1276CA2C800F110C7 /* YPDrawSignatureView.swift */; };
 		04FFB55C26959499001D0A25 /* MoreOption.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FFB55B26959499001D0A25 /* MoreOption.storyboard */; };
 		797BE6EC268B1E9D00918A91 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 797BE6EB268B1E9D00918A91 /* Authentication.storyboard */; };
 		C037C00F2689B434005F6EF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037C00E2689B434005F6EF2 /* AppDelegate.swift */; };
@@ -105,6 +108,7 @@
 		040F1ED12699A5AD006C6E09 /* RightViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightViewCell.xib; sourceTree = "<group>"; };
 		040F1ED42699A7A1006C6E09 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		040F1ED72699A882006C6E09 /* MessageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStore.swift; sourceTree = "<group>"; };
+		041A4DB5276BAB2700C25422 /* SignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		04228FB72692CDF4006F3423 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		04228FBA2692CE17006F3423 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		042E9F75268B4B1D00066EE1 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
@@ -113,12 +117,14 @@
 		042E9F80268B522600066EE1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		042E9F84268B57E000066EE1 /* ViewerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerCell.swift; sourceTree = "<group>"; };
 		042E9F85268B57E000066EE1 /* ViewerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewerCell.xib; sourceTree = "<group>"; };
+		043601CF26F1E11F00314D5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		044731162690468100C1C3D4 /* CaseManagementDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseManagementDetailsViewController.swift; sourceTree = "<group>"; };
 		0447311B2690562D00C1C3D4 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		0447311C2690562D00C1C3D4 /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		044BA2F726AA9DAF004DD1FA /* Security.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
 		0459939C26A95D980089CA3E /* OptionQuestionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionQuestionTableCell.swift; sourceTree = "<group>"; };
 		0459939D26A95D980089CA3E /* OptionQuestionTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionQuestionTableCell.xib; sourceTree = "<group>"; };
+		047148E8274D57000083F3D0 /* 911credit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = 911credit.entitlements; sourceTree = "<group>"; };
 		04734DF3269D70660056AF4D /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		048DE23526902DFF005D8A6A /* CaseManagementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseManagementCell.swift; sourceTree = "<group>"; };
 		048DE23626902DFF005D8A6A /* CaseManagementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaseManagementCell.xib; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 		04EF708A268DC9A2007F870B /* MoreViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewTableViewCell.swift; sourceTree = "<group>"; };
 		04EF708B268DC9A2007F870B /* MoreViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreViewTableViewCell.xib; sourceTree = "<group>"; };
 		04EF708F268DE8F3007F870B /* SecureCodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureCodeTextField.swift; sourceTree = "<group>"; };
+		04F0CFD1276CA2C800F110C7 /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
 		04FFB55B26959499001D0A25 /* MoreOption.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoreOption.storyboard; sourceTree = "<group>"; };
 		3206AE54D939AE9FCCEA8134 /* Pods-911credit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-911credit.release.xcconfig"; path = "Target Support Files/Pods-911credit/Pods-911credit.release.xcconfig"; sourceTree = "<group>"; };
 		797BE6EB268B1E9D00918A91 /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
@@ -210,6 +217,7 @@
 				F5E2D5E426C150E500BE1E75 /* View */,
 				F5E2D5DD26C1304400BE1E75 /* Model */,
 				0403E6742693062400981DF7 /* DocumentsViewController.swift */,
+				041A4DB5276BAB2700C25422 /* SignatureViewController.swift */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -588,7 +596,9 @@
 		C037C00D2689B434005F6EF2 /* 911credit */ = {
 			isa = PBXGroup;
 			children = (
+				047148E8274D57000083F3D0 /* 911credit.entitlements */,
 				C037C00E2689B434005F6EF2 /* AppDelegate.swift */,
+				043601CF26F1E11F00314D5D /* GoogleService-Info.plist */,
 				C037C02C2689B5AA005F6EF2 /* Miscellaneous */,
 				042E9F77268B4BAC00066EE1 /* Classes */,
 				C037C0282689B4D3005F6EF2 /* Interfaces */,
@@ -690,6 +700,7 @@
 			children = (
 				F5E2D5E526C150F900BE1E75 /* DocumentCell.swift */,
 				F5E2D5E726C153DE00BE1E75 /* DocumentSectionCell.swift */,
+				04F0CFD1276CA2C800F110C7 /* YPDrawSignatureView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -800,6 +811,7 @@
 				C037C0162689B434005F6EF2 /* Main.storyboard in Resources */,
 				04AFBFAC26A955EA00245895 /* SecurityOptionCell.xib in Resources */,
 				040F1ECF2699A593006C6E09 /* LeftViewCell.xib in Resources */,
+				043601D026F1E11F00314D5D /* GoogleService-Info.plist in Resources */,
 				04AFBF9726A94ECF00245895 /* Security.storyboard in Resources */,
 				797BE6EC268B1E9D00918A91 /* Authentication.storyboard in Resources */,
 				040F1ED32699A5AD006C6E09 /* RightViewCell.xib in Resources */,
@@ -917,6 +929,7 @@
 				0447311D2690562D00C1C3D4 /* ChatCell.swift in Sources */,
 				F526C63B26B185FD003CAD7A /* Credit_report.swift in Sources */,
 				04228FBB2692CE17006F3423 /* ChangePasswordViewController.swift in Sources */,
+				041A4DB6276BAB2700C25422 /* SignatureViewController.swift in Sources */,
 				C037C00F2689B434005F6EF2 /* AppDelegate.swift in Sources */,
 				F5E2D5E326C1309900BE1E75 /* Document.swift in Sources */,
 				040F1ED52699A7A1006C6E09 /* Message.swift in Sources */,
@@ -936,6 +949,7 @@
 				042E9F7E268B4C5C00066EE1 /* LoginViewController.swift in Sources */,
 				C037C0312689B5DB005F6EF2 /* Utils.swift in Sources */,
 				F570996826BF8E2200C7C9FE /* Agent_details.swift in Sources */,
+				04F0CFD2276CA2C900F110C7 /* YPDrawSignatureView.swift in Sources */,
 				F570996926BF8E2200C7C9FE /* Cases.swift in Sources */,
 				040F1ED22699A5AD006C6E09 /* RightViewCell.swift in Sources */,
 				F526C63D26B185FD003CAD7A /* Pivot.swift in Sources */,
@@ -1086,19 +1100,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = 911credit/911credit.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development: Rohit Joshi (7NVXK64589)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_TEAM = 4RX3ES2DZ5;
+				DEVELOPMENT_TEAM = Y4DS59927L;
 				INFOPLIST_FILE = 911credit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.softnoesis.911creditTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softnoesis.911creditTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = 911creditTestApp_Dev;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1110,19 +1125,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = 911credit/911credit.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development: Rohit Joshi (7NVXK64589)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_TEAM = 4RX3ES2DZ5;
+				DEVELOPMENT_TEAM = Y4DS59927L;
 				INFOPLIST_FILE = 911credit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.softnoesis.911creditTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.softnoesis.911creditTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = 911creditTestApp_Dev;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

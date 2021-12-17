@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Kingfisher
+//import Kingfisher
 class MoreViewController: BaseViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     @IBOutlet weak var emailLbl: UILabel!
@@ -55,7 +55,7 @@ extension MoreViewController {
             phoneNumberLbl.text = info.phoneNumber
             nameLbl.text = (info.firstName ?? "") + " " + (info.lastName ?? "")
             if let url = URL(string: info.userAvatar ?? "") {
-                profileImageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "user"), options: nil, completionHandler: nil)
+                //profileImageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "user"), options: nil, completionHandler: nil)
             }
         }
     }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>277244966954-r6t3vjrgsvke6p9qkpkjuo0klmdjhoj5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.277244966954-r6t3vjrgsvke6p9qkpkjuo0klmdjhoj5</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>277244966954-2gbtpqg30closa5tif3g1bsqkbhdh2o6.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBUsZ9DiSvlnraF4waX5V_gPO_kgSMBWpk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>277244966954</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.softnoesis.911creditTestApp</string>
+	<key>PROJECT_ID</key>
+	<string>credit-7fac2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>credit-7fac2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:277244966954:ios:da191f41b2859c2d7d6b53</string>
+</dict>
+</plist>

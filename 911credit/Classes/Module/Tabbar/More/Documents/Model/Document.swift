@@ -20,6 +20,7 @@ struct Document : Codable {
 	let caseId : Int?
 	let status : String?
 	let action : String?
+    let agreement : String?
     var notes = ""
     
 
@@ -32,6 +33,7 @@ struct Document : Codable {
 		case caseId = "case_id"
 		case status = "status"
 		case action = "action"
+        case agreement = "agreement"
 	}
 
 	init(from decoder: Decoder) throws {
@@ -43,6 +45,7 @@ struct Document : Codable {
         caseId = try values.decodeIfPresent(Int.self, forKey: .caseId)
 		status = try values.decodeIfPresent(String.self, forKey: .status)
 		action = try values.decodeIfPresent(String.self, forKey: .action)
+        agreement = try values.decodeIfPresent(String.self, forKey: .agreement)
 	}
 
 }

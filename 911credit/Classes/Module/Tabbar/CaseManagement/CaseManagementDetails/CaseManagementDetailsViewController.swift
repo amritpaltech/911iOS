@@ -44,7 +44,7 @@ class CaseManagementDetailsViewController: UIViewController {
         dateLabel.text = ""
         statusLabel.text = obj.status
         if let url = URL(string: obj.matters?.first?.agentDetails?.avatar ?? "") {
-            agentImageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "user"), options: nil, completionHandler: nil)
+            //agentImageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "user"), options: nil, completionHandler: nil)
         }
         let name = (obj.matters?.first?.agentDetails?.firstName ?? "") + " " + (obj.matters?.first?.agentDetails?.lastName ?? "")
         agentNameLabel.text = "Agent: " + name

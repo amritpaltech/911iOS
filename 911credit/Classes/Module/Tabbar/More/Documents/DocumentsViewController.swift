@@ -54,6 +54,24 @@ class DocumentsViewController: UIViewController, UIActionSheetDelegate, UIImageP
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.destination.isKind(of: SignatureViewController.self) {
+            
+            if let vc = segue.destination as? SignatureViewController {
+                vc.document = sender as? Document
+                vc.delegate = self
+            }
+        }
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+
+    override var shouldAutorotate: Bool {
+        return false
+    }
 }
 
 // MARK: - Methods
@@ -171,7 +189,20 @@ extension DocumentsViewController:UITableViewDelegate,UITableViewDataSource{
             switch docSection {
             case .requiredDocument:
                 if let obj = self.document?.required?[indexPath.row] {
-                    showPickerAndAlertByStatus(obj.status ?? "",obj)
+                    
+                    if obj.documentType == "agreement" {
+                        if obj.status == "missing" {
+                            self.performSegue(withIdentifier: "signatureSegue", sender: obj)
+                        } else if obj.status == "pending" {
+                            Utils.showAlertMessage(message: "Please wait until we verify your document")
+                        } else if obj.status == "approved" {
+                            Utils.showAlertMessage(message: "Your document is verified")
+                        } else if obj.status == "rejected" {
+                            Utils.showAlertMessage(message: "Document you provided is rejected")
+                        }
+                    } else {
+                        showPickerAndAlertByStatus(obj.status ?? "",obj)
+                    }
                 }
             case .otherDocument:
                 if let obj = self.document?.other?[indexPath.row] {
@@ -265,6 +296,7 @@ extension DocumentsViewController {
     }
         
 }
+
 extension DocumentsViewController: ImageScannerControllerDelegate {
     func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
         assertionFailure("Error occurred: \(error)")
@@ -283,4 +315,20 @@ extension DocumentsViewController: ImageScannerControllerDelegate {
         scanner.dismiss(animated: true, completion: nil)
    }
     
+}
+
+// MARK: - SignatureDelegate
+extension DocumentsViewController: SignatureDelegate {
+    
+    func uploadSignParams(param: [String: Any]) {
+        
+        self.navigationController?.popViewController(animated: false)
+        
+        Utils.showSpinner()
+        APIServices.uploadSignature(param: param) { (message) in
+            Utils.hideSpinner()
+            self.document = message
+            self.tableView.reloadData()
+        }
+    }
 }

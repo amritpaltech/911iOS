@@ -20,6 +20,18 @@ class APIServices: NSObject {
             return nil
         }
     }
+        
+    class func testingAPIRequest( complition: @escaping(([String:AnyObject]) -> Void)) {
+        
+        let val = "{\"notification\":{\"is_pop_up\":1,\"pop_up_data\":{\"message\":\"this is test\",\"title\":\"title\",\"image_json\":\"\",\"type\":\"notice\",\"is_congrats\":0}}}"
+        let data = val.data(using: .utf8)
+
+        complition(convertIntoDictionary(responseData: data)!)
+        
+        
+    }
+    
+    
     
     class func loginRequest(param: [String: Any], complition: @escaping(() -> Void)) {
         NetworkManager.shared.requestPost(path: API.login.rawValue, params: param, contentType: .formUrlencoded) { response, error, _ in
@@ -279,6 +291,27 @@ class APIServices: NSObject {
             }
         }){(error, statusCode) in
             DispatchQueue.main.async {
+                Utils.hideSpinner()
+                Utils.showAlertMessage(message: error?.localizedDescription ?? "")
+            }
+        }
+    }
+    
+    class func uploadSignature(param: [String: Any], complition: @escaping((_ list: Documents?) -> Void)) {
+        NetworkManager.shared.requestPost(path: API.uploadDocument.rawValue, params: param, contentType: .formUrlencoded) { response, error, _ in
+            if error == nil {
+                if let result = response as? [String: Any] {
+                    if  result["status"] as? String == "success" {
+                        if let data = result["documents"] {
+                            let doc : Documents? = self.decodeObject(fromData: data)
+                            complition(doc)
+                        }
+                    } else {
+                        Utils.hideSpinner()
+                        Utils.showAlertMessage(message: result["message"] as? String ?? "")
+                    }
+                }
+            } else {
                 Utils.hideSpinner()
                 Utils.showAlertMessage(message: error?.localizedDescription ?? "")
             }
