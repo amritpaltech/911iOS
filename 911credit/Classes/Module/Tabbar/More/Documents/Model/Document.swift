@@ -17,6 +17,7 @@ struct Document : Codable {
 	let documentType : String?
 	let label : String?
 	let description : String?
+    let message : String?
 	let caseId : Int?
 	let status : String?
 	let action : String?
@@ -34,6 +35,7 @@ struct Document : Codable {
 		case status = "status"
 		case action = "action"
         case agreement = "agreement"
+        case message = "message"
 	}
 
 	init(from decoder: Decoder) throws {
@@ -42,6 +44,7 @@ struct Document : Codable {
         documentType = try values.decodeIfPresent(String.self, forKey: .documentType)
 		label = try values.decodeIfPresent(String.self, forKey: .label)
 		description = try values.decodeIfPresent(String.self, forKey: .description)
+        message = try values.decodeIfPresent(String.self, forKey: .message)
         caseId = try values.decodeIfPresent(Int.self, forKey: .caseId)
 		status = try values.decodeIfPresent(String.self, forKey: .status)
 		action = try values.decodeIfPresent(String.self, forKey: .action)

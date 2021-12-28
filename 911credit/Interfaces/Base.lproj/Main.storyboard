@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ets-sh-UOe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ets-sh-UOe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -152,13 +152,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYg-Tx-HTC">
-                                            <rect key="frame" x="200" y="76.5" width="14.5" height="43.5"/>
+                                            <rect key="frame" x="200" y="75.5" width="14.5" height="45.5"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="37"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9R-Vq-NYK">
-                                            <rect key="frame" x="207" y="125" width="0.0" height="0.0"/>
+                                            <rect key="frame" x="207" y="126" width="0.0" height="0.0"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -332,7 +332,7 @@
                                 <rect key="frame" x="1000" y="88" width="414" height="754"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your authentication is failed  we will call you back" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xrn-Jg-Njz">
-                                        <rect key="frame" x="35" y="359.5" width="344" height="35"/>
+                                        <rect key="frame" x="35" y="359.5" width="344" height="35.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
@@ -498,7 +498,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byP-AJ-qxS">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="441.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="442.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dispute with SBI bank" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V94-xt-Ome">
                                                         <rect key="frame" x="20" y="32" width="302" height="29"/>
@@ -539,7 +539,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="20 June 2021" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ja-tX-hTC">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 June 2021" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ja-tX-hTC">
                                                         <rect key="frame" x="100" y="82" width="86" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="17" id="Ys6-DV-ZPU"/>
@@ -548,7 +548,7 @@
                                                         <color key="textColor" name="Gray"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Open" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPg-6o-evy">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Open" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPg-6o-evy">
                                                         <rect key="frame" x="36" y="82" width="33" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="17" id="vH5-Oz-Oua"/>
@@ -558,14 +558,14 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rci-jy-eWp">
-                                                        <rect key="frame" x="20" y="125" width="374" height="186.5"/>
+                                                        <rect key="frame" x="20" y="125" width="374" height="187.5"/>
                                                         <string key="text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. </string>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                                         <color key="textColor" name="Gray"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lk-fG-8qM">
-                                                        <rect key="frame" x="20" y="331.5" width="374" height="60"/>
+                                                        <rect key="frame" x="20" y="332.5" width="374" height="60"/>
                                                         <color key="backgroundColor" red="0.0" green="0.32549019610000002" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="69I-xy-F1S"/>
@@ -722,7 +722,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="AZo-j7-VBP">
-                                        <rect key="frame" x="30" y="145" width="100" height="100"/>
+                                        <rect key="frame" x="30" y="125" width="100" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="5TX-SU-ikJ"/>
@@ -738,9 +738,8 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <button opaque="NO" clipsSubviews="YES" alpha="0.45000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfK-lo-bVL">
-                                        <rect key="frame" x="30" y="145" width="100" height="100"/>
+                                        <rect key="frame" x="30" y="125" width="100" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="imagePlaceholder"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="25"/>
@@ -750,20 +749,46 @@
                                             <action selector="addPhotoButtonAction:" destination="Xqd-gO-dex" eventType="touchUpInside" id="NxN-qr-P3w"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYf-go-yn4">
+                                        <rect key="frame" x="30" y="225" width="100" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="UHC-9m-Jq5"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Edit photo">
+                                                    <attributes>
+                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="16" name="Montserrat-Bold"/>
+                                                        <integer key="NSUnderline" value="1"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="addPhotoButtonAction:" destination="Xqd-gO-dex" eventType="touchUpInside" id="ZOP-B0-k0m"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58v-Hv-a6x">
-                                        <rect key="frame" x="160" y="155" width="224" height="28"/>
+                                        <rect key="frame" x="160" y="145" width="224" height="29.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHH-KQ-Knf">
-                                        <rect key="frame" x="183" y="191.5" width="6" height="18"/>
+                                        <rect key="frame" x="183" y="183" width="4.5" height="18"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hTa-N5-P1m">
-                                        <rect key="frame" x="160" y="194.5" width="15" height="12.5"/>
+                                        <rect key="frame" x="160" y="186" width="15" height="12.5"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="15" id="ezE-Sa-svh"/>
@@ -771,7 +796,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9Gk-aF-BhG">
-                                        <rect key="frame" x="160" y="219" width="15" height="12.5"/>
+                                        <rect key="frame" x="160" y="210.5" width="15" height="12.5"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="15" id="3bl-4K-Pdd"/>
@@ -779,7 +804,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXX-rL-a1D">
-                                        <rect key="frame" x="183" y="218" width="6" height="18"/>
+                                        <rect key="frame" x="183" y="209.5" width="4.5" height="18"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -796,17 +821,20 @@
                                     <constraint firstItem="9Gk-aF-BhG" firstAttribute="top" secondItem="hTa-N5-P1m" secondAttribute="bottom" constant="10" id="FJR-pv-WHl"/>
                                     <constraint firstItem="hTa-N5-P1m" firstAttribute="leading" secondItem="58v-Hv-a6x" secondAttribute="leading" id="FwU-jD-hNt"/>
                                     <constraint firstItem="ge9-5V-N5D" firstAttribute="top" secondItem="S6V-Ta-djH" secondAttribute="top" id="HMu-nT-coB"/>
+                                    <constraint firstItem="AYf-go-yn4" firstAttribute="leading" secondItem="sfK-lo-bVL" secondAttribute="leading" id="HYK-2a-mzp"/>
                                     <constraint firstItem="EXX-rL-a1D" firstAttribute="leading" secondItem="9Gk-aF-BhG" secondAttribute="trailing" constant="8" symbolic="YES" id="HvK-v8-ZKi"/>
                                     <constraint firstItem="AZo-j7-VBP" firstAttribute="leading" secondItem="S6V-Ta-djH" secondAttribute="leading" constant="30" id="JDs-aJ-W1i"/>
+                                    <constraint firstItem="AYf-go-yn4" firstAttribute="top" secondItem="sfK-lo-bVL" secondAttribute="bottom" id="Mwm-st-cgO"/>
                                     <constraint firstItem="OHH-KQ-Knf" firstAttribute="leading" secondItem="hTa-N5-P1m" secondAttribute="trailing" constant="8" symbolic="YES" id="QnA-8s-o3N"/>
+                                    <constraint firstItem="AYf-go-yn4" firstAttribute="trailing" secondItem="sfK-lo-bVL" secondAttribute="trailing" id="Rot-xG-0cp"/>
                                     <constraint firstAttribute="height" constant="300" id="ZXo-TD-Wtu"/>
                                     <constraint firstAttribute="trailing" secondItem="58v-Hv-a6x" secondAttribute="trailing" constant="30" id="cgY-C9-W3w"/>
                                     <constraint firstItem="sfK-lo-bVL" firstAttribute="trailing" secondItem="AZo-j7-VBP" secondAttribute="trailing" id="hCG-Un-Sdu"/>
                                     <constraint firstAttribute="bottom" secondItem="ge9-5V-N5D" secondAttribute="bottom" id="iuW-5r-hF7"/>
-                                    <constraint firstItem="AZo-j7-VBP" firstAttribute="top" secondItem="S6V-Ta-djH" secondAttribute="top" constant="145" id="lzZ-Q5-FhI"/>
+                                    <constraint firstItem="AZo-j7-VBP" firstAttribute="top" secondItem="S6V-Ta-djH" secondAttribute="top" constant="125" id="lzZ-Q5-FhI"/>
                                     <constraint firstItem="EXX-rL-a1D" firstAttribute="top" secondItem="9Gk-aF-BhG" secondAttribute="top" id="oj4-lO-YeA"/>
                                     <constraint firstItem="sfK-lo-bVL" firstAttribute="top" secondItem="AZo-j7-VBP" secondAttribute="top" id="pcr-Qr-Vry"/>
-                                    <constraint firstItem="58v-Hv-a6x" firstAttribute="top" secondItem="AZo-j7-VBP" secondAttribute="top" constant="10" id="ptL-ds-Ide"/>
+                                    <constraint firstItem="58v-Hv-a6x" firstAttribute="top" secondItem="AZo-j7-VBP" secondAttribute="top" constant="20" id="ptL-ds-Ide"/>
                                     <constraint firstItem="hTa-N5-P1m" firstAttribute="top" secondItem="58v-Hv-a6x" secondAttribute="bottom" constant="10" id="vHN-LG-fWL"/>
                                     <constraint firstItem="58v-Hv-a6x" firstAttribute="leading" secondItem="AZo-j7-VBP" secondAttribute="trailing" constant="30" id="w3l-AE-uXv"/>
                                     <constraint firstItem="sfK-lo-bVL" firstAttribute="bottom" secondItem="AZo-j7-VBP" secondAttribute="bottom" id="weM-XT-Gbk"/>
@@ -910,7 +938,6 @@
         <image name="caseManagement" width="25.5" height="27"/>
         <image name="chatWhite" width="28.5" height="25.5"/>
         <image name="curve" width="1440" height="892"/>
-        <image name="imagePlaceholder" width="32" height="32"/>
         <image name="linedashboard" width="428" height="2"/>
         <image name="mail" catalog="system" width="128" height="93"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>

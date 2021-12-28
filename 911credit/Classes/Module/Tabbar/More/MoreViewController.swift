@@ -55,6 +55,17 @@ extension MoreViewController {
             phoneNumberLbl.text = info.phoneNumber
             nameLbl.text = (info.firstName ?? "") + " " + (info.lastName ?? "")
             if let url = URL(string: info.userAvatar ?? "") {
+                
+                
+                
+                do {
+                    
+                    let data = try Data(contentsOf: url)
+                    profileImageView.image = UIImage(data: data)
+                } catch let error{
+                    
+                }
+                
                 //profileImageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "user"), options: nil, completionHandler: nil)
             }
         }

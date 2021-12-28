@@ -745,13 +745,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Driving Licence (Front)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igD-Il-AaB">
-                                                            <rect key="frame" x="20" y="17" width="289" height="21"/>
+                                                            <rect key="frame" x="20" y="17" width="289" height="20.5"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                                                             <color key="textColor" name="Gray"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQR-Hu-6RB">
-                                                            <rect key="frame" x="20" y="46" width="289" height="14"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQR-Hu-6RB">
+                                                            <rect key="frame" x="20" y="45.5" width="289" height="14.5"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
                                                             <color key="textColor" name="Gray"/>
                                                             <nil key="highlightedColor"/>
@@ -882,6 +882,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Jt-FI-zkc">
+                                <rect key="frame" x="16" y="433" width="382" height="393"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSI-eR-C33">
                                 <rect key="frame" x="16" y="433" width="382" height="393"/>
                                 <subviews>
@@ -898,7 +907,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place your Signature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNm-QU-Mg5">
-                                                <rect key="frame" x="107" y="14" width="168" height="22"/>
+                                                <rect key="frame" x="107" y="14.5" width="168" height="21"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -985,11 +994,15 @@
                         <viewLayoutGuide key="safeArea" id="jZM-Gq-BPM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="5Jt-FI-zkc" firstAttribute="top" secondItem="VSI-eR-C33" secondAttribute="top" id="BWo-if-4b0"/>
                             <constraint firstAttribute="bottom" secondItem="VSI-eR-C33" secondAttribute="bottom" constant="16" id="HfD-EX-bsP"/>
                             <constraint firstItem="jZM-Gq-BPM" firstAttribute="trailing" secondItem="qoU-Nm-bOZ" secondAttribute="trailing" constant="16" id="K2D-Wf-eUc"/>
                             <constraint firstItem="EMK-jQ-Ucm" firstAttribute="leading" secondItem="qoU-Nm-bOZ" secondAttribute="leading" id="M1D-t0-Inh"/>
+                            <constraint firstItem="5Jt-FI-zkc" firstAttribute="trailing" secondItem="VSI-eR-C33" secondAttribute="trailing" id="RkF-RR-THN"/>
                             <constraint firstItem="EMK-jQ-Ucm" firstAttribute="top" secondItem="qoU-Nm-bOZ" secondAttribute="bottom" constant="16" id="SUj-CZ-NuC"/>
+                            <constraint firstItem="5Jt-FI-zkc" firstAttribute="bottom" secondItem="VSI-eR-C33" secondAttribute="bottom" id="UhC-tI-ZQl"/>
                             <constraint firstItem="EMK-jQ-Ucm" firstAttribute="trailing" secondItem="qoU-Nm-bOZ" secondAttribute="trailing" id="Y9e-aL-3w0"/>
+                            <constraint firstItem="5Jt-FI-zkc" firstAttribute="leading" secondItem="VSI-eR-C33" secondAttribute="leading" id="ZbS-Rj-IfN"/>
                             <constraint firstItem="VSI-eR-C33" firstAttribute="top" secondItem="jZM-Gq-BPM" secondAttribute="top" priority="250" id="bmU-rw-8dJ"/>
                             <constraint firstItem="jZM-Gq-BPM" firstAttribute="trailing" secondItem="VSI-eR-C33" secondAttribute="trailing" constant="16" id="fes-fv-MFw"/>
                             <constraint firstItem="qoU-Nm-bOZ" firstAttribute="leading" secondItem="jZM-Gq-BPM" secondAttribute="leading" constant="16" id="fvH-Mh-Lgr"/>
@@ -1004,7 +1017,7 @@
                     <connections>
                         <outlet property="agreementTextView" destination="Wfu-EU-n49" id="O3B-y1-eH4"/>
                         <outlet property="shadowView" destination="qoU-Nm-bOZ" id="Ipi-Nm-SNC"/>
-                        <outlet property="signShadowView" destination="VSI-eR-C33" id="gLE-yv-Rrk"/>
+                        <outlet property="signShadowView" destination="5Jt-FI-zkc" id="jiX-yE-v6z"/>
                         <outlet property="signViewLeftConstraint" destination="vkk-VF-naF" id="AQP-X2-9pk"/>
                         <outlet property="signViewLowConstraint" destination="i0e-9m-fkF" id="tch-KG-FLM"/>
                         <outlet property="signViewRightConstraint" destination="fes-fv-MFw" id="WG5-uj-dRo"/>

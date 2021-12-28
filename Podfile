@@ -12,7 +12,7 @@ target '911credit' do
   pod 'SwiftLint'
   pod 'ShakeBug'
   pod 'IQKeyboardManagerSwift'
-#  pod 'Kingfisher'
+  # pod 'Kingfisher'
   pod 'Charts'
   pod 'MSCircularSlider'
   pod 'WeScan'

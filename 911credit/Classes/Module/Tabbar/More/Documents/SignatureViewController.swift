@@ -36,7 +36,7 @@ class SignatureViewController: UIViewController {
         AppDelegate.shared?.restrictRotation = true
         
         shadowView.setupShadow(color: .darkGray, opacity: 0.3, radius: 8, offset: CGSize(width: 3, height: 3))
-        signatureView.setupShadow(color: .darkGray, opacity: 0.3, radius: 8, offset: CGSize(width: 3, height: 3))
+        signShadowView.setupShadow(color: .darkGray, opacity: 0.3, radius: 8, offset: CGSize(width: 3, height: 3))
         
         let htmlData = ("<center>\(self.document?.agreement! ?? "")</center>" ).data(using: .unicode)
 
@@ -74,8 +74,6 @@ class SignatureViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        signShadowView.clipsToBounds = true
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

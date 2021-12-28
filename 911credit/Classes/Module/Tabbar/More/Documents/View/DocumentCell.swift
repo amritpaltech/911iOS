@@ -27,22 +27,23 @@ class DocumentCell: UITableViewCell {
     func initCellForRequired(_ required:Document){
         titleLbl.text = required.label
         self.docStatusHandling(required.status ?? "")
+        descLbl.text = required.description!.count > 0 ? required.description : required.message
     }
 
     func docStatusHandling(_ status:String){
         if status == "missing" {
-            bgView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9764705882, blue: 0.9529411765, alpha: 1)
+            bgView.backgroundColor = #colorLiteral(red: 1, green: 0.9921568627, blue: 0.7960784314, alpha: 1)
             descLbl.text = "..."
-            descLbl.textColor = #colorLiteral(red: 0.831372549, green: 0.831372549, blue: 0.831372549, alpha: 1)
+            descLbl.textColor = #colorLiteral(red: 0.9607843137, green: 0.5764705882, blue: 0.2588235294, alpha: 1)
             titleLbl.textColor = #colorLiteral(red: 0.831372549, green: 0.831372549, blue: 0.831372549, alpha: 1)
-            imgView.image = #imageLiteral(resourceName: "rightGray")
+            imgView.image = #imageLiteral(resourceName: "greydot")
             imageView?.setImageColor(color: #colorLiteral(red: 0.831372549, green: 0.831372549, blue: 0.831372549, alpha: 1))
         } else if status == "pending" {
-            bgView.backgroundColor = #colorLiteral(red: 0.8901960784, green: 0.9450980392, blue: 0.8941176471, alpha: 1)
+            bgView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9764705882, blue: 0.9529411765, alpha: 1)
             descLbl.text = "Pending Approval"
             descLbl.textColor = #colorLiteral(red: 0.9607843137, green: 0.5764705882, blue: 0.2588235294, alpha: 1)
             titleLbl.textColor = #colorLiteral(red: 0.831372549, green: 0.831372549, blue: 0.831372549, alpha: 1)
-            imgView.image = #imageLiteral(resourceName: "rightGray")
+            imgView.image = #imageLiteral(resourceName: "greydot")
             imageView?.setImageColor(color: #colorLiteral(red: 0.9607843137, green: 0.5764705882, blue: 0.2588235294, alpha: 1))
         } else if status == "approved" {
             bgView.backgroundColor = #colorLiteral(red: 0.8901960784, green: 0.9450980392, blue: 0.8941176471, alpha: 1)
@@ -64,6 +65,7 @@ class DocumentCell: UITableViewCell {
     func initCellForOther(_ other:Document){
         titleLbl.text = other.label
         self.docStatusHandling(other.status ?? "")
+        descLbl.text = other.description!.count > 0 ? other.description : other.message
 
     }
 
